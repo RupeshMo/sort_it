@@ -1,12 +1,12 @@
 * {
   /* border: 0.5px solid black ; */
   margin: 5px;
-  background-color: #FFF67E ;
+  /* background-color: #FFF67E ; */
 }
 body {
   display: flex;
   flex-direction: column;
-  background-color: #BFEA7C;
+  /* background-color: #BFEA7C; */
   
 
 }
@@ -20,15 +20,18 @@ body {
   align-items: center;
   justify-content: center;
   
-  background-color: #9BCF53;
+  /* background-color: #9BCF53; */
 
 }
 
 .game-objective {
   background-color: #A5DD9B;
-  
-  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
   height: 60px;
+  padding: 10px;
 }
 
 .game-solution {
@@ -43,4 +46,11 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif; 
   margin-top: 1px;
 
+}
+
+.character {
+  flex-shrink: 0;
+  border: 0.4px solid blue;
+  width: 20px;
+  height: 20px;
 }
