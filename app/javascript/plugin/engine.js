@@ -81,19 +81,36 @@ function setGoalAndRetain(whereTo, whatTo){
   return whatTo;
 }
 
+
 // Read parent elements and setup game skeleton
+let timeStart = 0;
 const gameObjectiveContainer = document.querySelector(".game-objective");
 const gameSolutionContainer = document.querySelector(".game-solution");
 const ObjectiveSequence = [];
 let sortedObjectiveSequence = new Array(gameSequenceSize);
 const startGame = document.querySelector(".start-game");
+let gameCount = 0 ; 
 startGame.addEventListener("click", () => {
+
+  if (gameCount != 0){
+    let elements = gameSequenceSize-1;
+    while (elements >= 0) {
+      gameObjectiveContainer.children[elements].remove();
+      gameSolutionContainer.children[elements].remove();
+    elements--;
+  }
+  document.querySelector(".game-heaing").textContent = "Welcome again";
+  gameCount = 0;
+}
+  
   for (let i = 0 ; i < gameSequenceSize; i++) {
+    gameCount++;
     gameObjectiveContainer.append(document.createElement("label"));
     gameSolutionContainer.append(document.createElement("input"));
 
     // Saves character and sets character
     ObjectiveSequence[i] = setGoalAndRetain(gameObjectiveContainer.children[i], getRandomCharBetween(65, 90));
+    timeStart = new Date().getTime();
     gameObjectiveContainer.children[i].setAttribute("class", "character");
     gameSolutionContainer.children[i].setAttribute("class", "userInput");
     gameSolutionContainer.children[i].setAttribute("maxlength", "1");
@@ -112,11 +129,11 @@ startGame.addEventListener("click", () => {
         console.log(gameSolutionContainer.children[i].value);
         gameSolutionContainer.children[i].style.backgroundColor = "#6895D2";
         // gameSolutionContainer.children[i+1].focus();
-        if (i < gameSequenceSize-1){ gameSolutionContainer.children[i+1].focus(); }
-        else {
-           
-           const currentDate = new Date();
-           setInterval(console.log("game completed "), 1);
+        if (i < gameSequenceSize-1){ gameSolutionContainer.children[i+1].focus();}
+        if (i == gameSequenceSize-1) {
+          const currentDate = new Date().getTime();
+          //  console.log("Time Taken: " + ((currentDate - timeStart)/1000).toPrecision(7) + " seconds ('-')");
+          document.querySelector(".game-heaing").textContent = "Time Taken: " + ((currentDate - timeStart)/1000).toPrecision(7) + " seconds ('-')";
         }
       }
       else {
@@ -127,6 +144,4 @@ startGame.addEventListener("click", () => {
     })
   }
 })
-
-
 

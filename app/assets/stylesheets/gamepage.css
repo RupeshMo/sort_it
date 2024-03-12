@@ -79,3 +79,21 @@ body {
  .userInput:focus {
   border: 2px solid skyblue;
  } 
+
+ .time-class {
+  border: 0.2px solid black;
+  width: 100px;
+  height: 20px;
+  padding: 10px;
+  display: flex;
+ }
+
+ .seconds, .milliseconds, .minutes {
+  border: 0.2px solid black;
+  width: auto;
+  height: 15px;
+  padding: 3px;
+
+ }
+
+
