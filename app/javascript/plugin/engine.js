@@ -134,12 +134,27 @@ startGame.addEventListener("click", () => {
           const currentDate = new Date().getTime();
           //  console.log("Time Taken: " + ((currentDate - timeStart)/1000).toPrecision(7) + " seconds ('-')");
           document.querySelector(".game-heaing").textContent = "Time Taken: " + ((currentDate - timeStart)/1000).toPrecision(7) + " seconds ('-')";
+          const gameTiming = "Time Taken: " + ((currentDate - timeStart)/1000).toPrecision(7) + " seconds ('-')";
+          const data = {gameTiming};
+          // console.log(gameTimingObject);
+          // console.log(gameTiming);
+
+          const options = {
+            method: "post",
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+            },
+            body: JSON.stringify(data)
+          };
+          fetch("/unicorn", options);
         }
       }
       else {
         gameSolutionContainer.children[i].style.backgroundColor = "#FA9884";
         gameSolutionContainer.children[i].value = null;
-
+          
       }
     })
   }
