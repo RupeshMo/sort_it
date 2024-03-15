@@ -1,2 +1,7 @@
 <H1>This is games show page</H1>
-<%= @gameTiming %>
+<ul>
+<% @games.each do |game| %>
+<Li><%= game.gametime %></Li>
+  
+  <%end%>
+</ul>

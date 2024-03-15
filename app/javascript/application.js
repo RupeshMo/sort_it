@@ -2,3 +2,4 @@
 import "controllers"
 import "@hotwired/turbo-rails"
 import "plugin/engine"
+import "plugin/indexUi"
