@@ -1,19 +1,25 @@
 class GamesController < ApplicationController
 
-
-
   def show
     @games = Game.all
-    
   end
 
   def create
     @game = Game.new(require_params)
     if @game.save
-      redirect_to unic_path
-      return 
+      response.headers['Location'] = '/unicorns'
+      render json: {status: 302}
+      # puts request.body.read;
+      # redirect_to '/unicorns'
+      # respond_to do |format|
+      #   format.json {render json: {success: "Yes"}}
+      # end
+      #   # format.json { render json: {
+      #   #   hellow: "Hi"
+      #   # } 
+      # }
     else 
-      redirect_to '/'
+        redirect_to '/'
     end
   end
 
