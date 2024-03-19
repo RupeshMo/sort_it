@@ -34,3 +34,7 @@
 //   mainElement.children[randomIndexGenerator()[0]].children[randomIndexGenerator()[1]].style.borderRadius = '20px';
 
 // }, 1000);
+
+const howTo = document.querySelector('.how-to');
+// howTo.append(document.createElement('button'));
+

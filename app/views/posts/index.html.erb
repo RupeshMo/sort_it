@@ -1,5 +1,20 @@
-<h1 class="post-heading">
-  Welcome to Sort-It!
-</h1>
+<div class="how-to">
+  <!-- <h1 class="post-heading">
+    Welcome to Sort-It!
+  </h1> -->
+  <%= link_to 'Play', '/newgame', class: 'play-btn btn'%>
+  <%= link_to 'Leaderboards', '/unicorns', class: 'leaderboards-btn btn' %> 
+  <div class="how-to-play-box">
+    <div class="how-to-play">
+      How to play?
+    </div>
+    <ul class="how-to-description">
+      <li>Given a disordered random sequence between A to Z.</li>
+      <li>You will have to sort the sequence in order (A...B...C...Z)</li>
+      <li>E.g. [M G P L S] to [G L M P S]</li>
+      <li>Try to finish fast as possible</li>
+    </ul>
+  </div>
+</div>
 
-
+  <!-- <%= link_to 'How to play?', '/unicorns', class: "how-to"%> -->

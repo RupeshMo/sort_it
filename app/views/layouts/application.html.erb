@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Rubik+Gemstones&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=Rubik+Gemstones&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -15,13 +17,12 @@
       <div class="logo">
         Sort-It
       </div>
-      <nav class="navigation">
-        <ul>
-          <li>About</li>
-          <li>Home</li>
-        </ul>
-      </nav>
     </header>
+    <!-- <nav class="navigation">
+      <ul>
+        <li>About</li>
+      </ul>
+    </nav> -->
     <main class="main">
     <%= yield %>
     </main>
