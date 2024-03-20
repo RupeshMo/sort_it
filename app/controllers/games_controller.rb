@@ -7,8 +7,8 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(require_params)
     if @game.save
-      response.headers['Location'] = '/unicorns'
-      render json: {status: 302}
+      # response.headers['Location'] = '/unicorns'
+      # render json: {status: 302}
       # puts request.body.read;
       # redirect_to '/unicorns'
       # respond_to do |format|

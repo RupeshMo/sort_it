@@ -20,29 +20,41 @@
 /* } */ 
 .how-to-description {
   list-style:disc;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   font-size: 10px;
   font-family: 'Madimi One', sans-serif;
-  background-color: rgb(230, 218, 240);
+  background-color: rgb(254, 225, 254);
   padding: 15px;
   border-radius: 6px;
+  letter-spacing: 0.6px;
+  height: inherit;
+  display: none;
   
-
-  
-
 }
 
+/* .disable-visibility {
+  display: none;
+} */
 .how-to-play-box {
-  border: 1px dashed  darkgoldenrod;
+  /* border: 1px dashed  darkgoldenrod;
+  padding-top: 6px;
+  margin-top: 3px; */
+  height: inherit;
 }
 .how-to-play {
-  background-color: rgba(194, 52, 255, 0.466);
+  background-color: lightgoldenrodyellow;
   width: 100px;
-  padding: 4px;
+  padding: 0.6px;
+  padding-left: 1px;
+  margin-top: 6px;
   font-size: 15px;
   font-family: "Madimi One", sans-serif;
+  /* height: inherit; */
+  cursor: pointer;
 }
+
+
 
 
 /* .navigation {
@@ -75,8 +87,9 @@ main {
   /* justify-content: center; */
   align-items: center;
   flex-direction: column;
-  justify-content: center;
-  height: 78vh;
+  justify-content: flex-start;
+  
+  height: 74vh;
   width: 60%;
   align-self: center;
 }
@@ -97,13 +110,14 @@ main {
   align-items: center;
   /* text-decoration: none; */
   /* background-color: beige; */
-  /* border: 0.8px solid deeppink; */
+  border: 0.8px solid deeppink;
   /* border: inherit; */
   color: black;
   padding: 6px;
   border-radius: 4px;
   width: 50vh;
-  height: 300px;
+  /* height: inherit; */
+  margin-top: 8px;
 
 }
 body {
@@ -114,11 +128,12 @@ body {
   flex-direction: column;
   height: 100vh;
   width: 100%;
+  background-color: linen;
   
 }
 
 .btn {
-  border: 2px solid darkmagenta;
+  border: 0.8px solid deeppink;
   background-color: rgb(254, 225, 254);
   text-decoration: none;
   font-family: "Madimi One", sans-serif;
@@ -128,12 +143,27 @@ body {
   margin: 3px;
   border-radius: 4px;
   padding: 6px;
-  font-size: 25px;
+  font-size: 20px;
+  letter-spacing: 0.8px;
   min-width: 160px ;
   text-align: center;
   transition: 100ms;
+  /* display: none; */
+
+  
 }
 
+.close {
+  width: 20px;
+  height: 20px;
+  padding: auto;
+  background-color: rgba(227, 57, 85, 0.795);
+  border-radius: 50%;
+  border: none;
+  align-self: flex-end;
+  display: none;
+
+}
 .btn:hover {
-  box-shadow:   4px 4px  plum;
+  box-shadow: inset 4px 4px  deeppink;
 }

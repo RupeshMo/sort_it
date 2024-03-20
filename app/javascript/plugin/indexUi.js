@@ -1,3 +1,85 @@
+function descriptionButton() {
+  // Read the button
+  const descriptionTrigger = document.querySelector('.how-to-play');
+  descriptionTrigger.addEventListener('click', () => {
+    // hide other two buttons, combine with description body.
+    const toHide = document.querySelector('.how-to');
+    toHide.children[0].style.display = 'none';
+    toHide.children[1].style.display = 'none';  
+
+    // Append description to  descriptionTrigger and unhide
+    descriptionTrigger.appendChild(document.querySelector('.how-to-description'));
+    descriptionTrigger.children[1].style.setProperty('display', 'flex');
+    
+    // Turn on close button
+    document.querySelector('.close').style.setProperty('display', 'initial');
+  });
+}
+
+descriptionButton();
+
+
+// const close = document.querySelector('.close');
+// close.addEventListener('click', () => {
+//   const howTo = document.querySelector('.how-to');
+//    let a = 0; 
+//    while (a != 3){  
+//   howTo.children[a].style.border = '2px dashed deeppink ';
+//   a++;
+//    }
+// })
+
+
+// howTo.children[1].removeAttribute('class');
+
+// howTo.append(document.createElement('div'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const mainElement = document.querySelector("body");
 // // console.log(mainElement.childElementCount);
 // for (let i = 0; i < (1920 / 100) * 5; i++) {
@@ -34,7 +116,4 @@
 //   mainElement.children[randomIndexGenerator()[0]].children[randomIndexGenerator()[1]].style.borderRadius = '20px';
 
 // }, 1000);
-
-const howTo = document.querySelector('.how-to');
-// howTo.append(document.createElement('button'));
 
