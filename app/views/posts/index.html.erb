@@ -1,21 +1,23 @@
-<div class="how-to">
-  <!-- <h1 class="post-heading">
-    Welcome to Sort-It!
-  </h1> -->
-  <%= link_to 'Play' , '/newgame' , class: 'btn' %>
-  <%= link_to 'Leaderboards' , '/unicorns' , class: 'btn' %>
-  <div class="how-to-play-box">
-    <div class="how-to-play btn">
-      How to play?
-      <button class="close">X</button>
-    </div>
+<div class="game-navigation">
+  <%= link_to 'Play', '/newgame', class: 'btn'%>
+  <%= link_to 'Leaderboards', '/unicorns', class: 'btn'%>
+  
+  <div class="how-to-play-button btn">
+    How to play?
   </div>
-  <ul class="how-to-description disable-visibility"> 
-    <li>Given a disordered random sequence between A to Z.</li>
-    <li>You will have to sort the sequence in order (A...B...C...Z)</li>
-    <li>E.g. [M G P L S] to [G L M P S]</li>
-    <li>Try to finish fast as possible</li>
-  </ul>
-</div>
 
-<!-- <%= link_to 'How to play?', '/unicorns', class: "how-to"%> -->
+  <div class="set-up-description">
+
+  </div>
+
+  <div class="close-description">
+    X
+  </div>
+
+  <ul class="description-list">
+    <li>Sort the give sequece in an order.</li>
+    <li>E.g. "T E H K S" To "E H K S T"</li>
+    <li>Sort it as fast as possible, to score more.</li>
+  </ul>
+
+</div>

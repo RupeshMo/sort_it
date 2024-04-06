@@ -1,0 +1,104 @@
+.main {
+  border: 1px solid black;
+  display: flex;
+}
+header {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  align-items: center;
+}
+
+.logo {
+  font-size: 4rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: deeppink;
+  letter-spacing: 1.5px;
+}
+
+main {
+  /* border: 1px solid red; */
+  height: 270px;
+  width: 260px;
+  align-self: center;
+  
+  /* border-radius: 8px; */
+}
+
+
+
+div.game-navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.2px solid rgb(226, 14, 96);
+  border-radius: 10px;
+  height: 260px;
+  width: 250px;
+}
+
+.btn {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: 140px;
+  border: 0.6px solid deeppink;
+  border-radius: 4px;
+  height: 30px;
+  cursor: pointer;
+  transition: 200ms;
+  
+  /* transition: ease-in-out; */
+}
+
+.btn:hover {
+  box-shadow:  3px 3px  deeppink;
+}
+
+.flex-direction-setup {
+  flex-direction: column;
+
+}
+
+.close-description {
+  cursor: pointer;
+  background-color: pink;
+  border: 0.4px solid deeppink;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  font-size: 8px;
+  align-self: flex-end;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.description-list {
+  margin: 0;
+  list-style-type: circle;
+  font-size: 12px;
+  padding: 4px;
+
+}
+.description-list, .close-description {
+  display: none;
+  margin: 1px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* border: 1px solid red; */
+}
+
+.set-up-description {
+  /* border: 1px solid black; */
+  display: flex;
+  /* margin: 1px; */
+  flex-direction: column;
+}
+
+

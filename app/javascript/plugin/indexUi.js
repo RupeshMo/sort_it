@@ -1,119 +1,61 @@
-function descriptionButton() {
-  // Read the button
-  const descriptionTrigger = document.querySelector('.how-to-play');
-  descriptionTrigger.addEventListener('click', () => {
-    // hide other two buttons, combine with description body.
-    const toHide = document.querySelector('.how-to');
-    toHide.children[0].style.display = 'none';
-    toHide.children[1].style.display = 'none';  
+// Add a click event on how-to-play-button to set-up-description
+function showDescription() {
+  // Read and store the how-to-play-button 
+  const howToPlayButton = document.querySelector('.how-to-play-button');
+  const gameNavigation = document.querySelector('.game-navigation');
 
-    // Append description to  descriptionTrigger and unhide
-    descriptionTrigger.appendChild(document.querySelector('.how-to-description'));
-    descriptionTrigger.children[1].style.setProperty('display', 'flex');
+  howToPlayButton.addEventListener('click', () => {
+    // Hide all buttons 
+    const btns = document.querySelectorAll('.btn');
+    btns[0].style.display = 'none';
+    btns[1].style.display = 'none';
+    btns[2].style.display = 'none';
+
+    const setUp = document.querySelector('.set-up-description');
+    const closeButton = document.querySelector('.close-description');
+    const toAppendList = document.querySelector('.description-list');
+
+    setUp.append(closeButton);
+    setUp.append(toAppendList);
+
+    toAppendList.classList.add('flex-direction-setup');
+
+    closeButton.style.display = 'flex';
+    toAppendList.style.display = 'flex';
     
-    // Turn on close button
-    document.querySelector('.close').style.setProperty('display', 'initial');
-  });
+    console.log(gameNavigation);
+  })
 }
 
-descriptionButton();
+function closeDescription() {
+  const closeButton = document.querySelector('.close-description');
 
+  closeButton.addEventListener('click', () => {
 
-// const close = document.querySelector('.close');
-// close.addEventListener('click', () => {
-//   const howTo = document.querySelector('.how-to');
-//    let a = 0; 
-//    while (a != 3){  
-//   howTo.children[a].style.border = '2px dashed deeppink ';
-//   a++;
-//    }
-// })
+    const setUp = document.querySelector('.set-up-description');
+    const closeButton = document.querySelector('.close-description');
+    const toAppendList = document.querySelector('.description-list');
+    const gameNavigation = document.querySelector('.game-navigation');
 
+    gameNavigation.append(toAppendList);
+    gameNavigation.append(closeButton);
+    // setUp.remove(toAppendList);
 
-// howTo.children[1].removeAttribute('class');
+    closeButton.style.display = 'none';
+    toAppendList.style.display = 'none';
+    
+    const btns = document.querySelectorAll('.btn');
+    btns[0].style.display = 'flex';
+    btns[1].style.display = 'flex';
+    btns[2].style.display = 'flex';
+    // console.log(btns);
+   
 
-// howTo.append(document.createElement('div'));
+    console.log(gameNavigation);
+  })
 
+ 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const mainElement = document.querySelector("body");
-// // console.log(mainElement.childElementCount);
-// for (let i = 0; i < (1920 / 100) * 5; i++) {
-//   mainElement.append(document.createElement("div"));
-//   mainElement.children[i].setAttribute("class", "customPixelColumn");
-//   for (let j = 0; j < (1080 / 100) * 5; j++) {
-//     mainElement.children[i].append(document.createElement("div"));
-//     mainElement.children[i].children[j].setAttribute("class", "customPixel");
-//   }
-// }
-
-
-// function randomIndexGenerator() {
-//   let indexes = [];
-//   indexes[0] = Math.floor((Math.random() * 96));
-//   indexes[1] = Math.floor((Math.random() * 56));
-//   return indexes;
-// }
-
-// // console.log(randomIndexGenerator());
-
-
-// function randomColorGenerator() {
-//   let rgb = [];
-//   rgb[0] = Math.floor((Math.random() * 256));
-//   rgb[1] = Math.floor((Math.random() * 256));
-//   rgb[2] = Math.floor((Math.random() * 256));
-//   return rgb;
-// }
-
-// setInterval(() => {
-  
-//   mainElement.children[randomIndexGenerator()[0]].children[randomIndexGenerator()[1]].style.backgroundColor = "rgb(" + randomColorGenerator()[0] + "," + randomColorGenerator()[1] + "," + randomColorGenerator()[2];
-//   mainElement.children[randomIndexGenerator()[0]].children[randomIndexGenerator()[1]].style.borderRadius = '20px';
-
-// }, 1000);
-
+}
+showDescription();
+closeDescription();
