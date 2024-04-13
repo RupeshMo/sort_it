@@ -4,6 +4,10 @@ function showDescription() {
   const howToPlayButton = document.querySelector('.how-to-play-button');
   const gameNavigation = document.querySelector('.game-navigation');
 
+  console.log(howToPlayButton);
+  console.log(document.querySelector('.how-to-play-button'));
+
+  if (howToPlayButton != null){
   howToPlayButton.addEventListener('click', () => {
     // Hide all buttons 
     const btns = document.querySelectorAll('.btn');
@@ -23,13 +27,19 @@ function showDescription() {
     closeButton.style.display = 'flex';
     toAppendList.style.display = 'flex';
     
-    console.log(gameNavigation);
+    
   })
+
+}
+else {
+  console.log(document.querySelector('.how-to-play-button'));
+}
 }
 
 function closeDescription() {
   const closeButton = document.querySelector('.close-description');
 
+  if (closeButton != null) {
   closeButton.addEventListener('click', () => {
 
     const setUp = document.querySelector('.set-up-description');
@@ -52,10 +62,17 @@ function closeDescription() {
    
 
     console.log(gameNavigation);
+    
   })
-
+  }
  
 
 }
-showDescription();
-closeDescription();
+// if (document.readyState == 'interactive'){
+document.addEventListener('turbo:load', () => {
+  console.log(document.readyState); 
+  console.log('hi');
+  showDescription();
+  closeDescription();
+}) 
+// }

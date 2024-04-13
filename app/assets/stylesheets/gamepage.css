@@ -1,5 +1,5 @@
 * {
-  /* border: 0.5px solid black ; */
+  border: 0.5px solid black ; 
   margin: 5px;
   /* background-color: #FFF67E ; */
 }
@@ -15,7 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   width: auto;
-  height: 200px;
+  height: auto;
   gap: 2px;
   align-items: center;
   justify-content: center;
@@ -32,6 +32,8 @@ body {
   width: auto;
   height: 60px;
   padding: 10px;
+  border: 1px solid black;
+  
 }
 
 .game-solution {
@@ -42,6 +44,7 @@ body {
   width: auto;
   height: 60px;
   padding: 10px;
+  border: 1px solid black;
 }
 
 
@@ -53,7 +56,7 @@ body {
 
 .character {
   text-align: center;
-  padding: 5px;
+  /* padding: 5px; */
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   flex-shrink: 0;
   /* border: 0.1px solid blue; */
@@ -65,7 +68,7 @@ body {
 
 .userInput {
   text-align: center;
-  padding: 5px;
+  /* padding: 5px; */
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   flex-shrink: 0;
   /* border: 0.1px solid blue; */
@@ -96,4 +99,16 @@ body {
 
  }
 
+.start-game{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-evenly;
+}
 
+.label {
+  display: flex;
+  padding: 10px;
+  /* justify-content: center;
+  align-content: center; */
+}

@@ -1,6 +1,8 @@
 .main {
   border: 1px solid black;
   display: flex;
+  flex-direction: column;
+  background-color: #9BCF53;
 }
 header {
   /* border: 1px solid black; */
