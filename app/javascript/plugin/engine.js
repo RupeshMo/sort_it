@@ -20,45 +20,35 @@ function setGoalAndRetain(whereTo, whatTo) {
 }
 
 function setUpGame(forCase, size) {
-
-  const parentGameContainer = document.querySelector('.game-objective');
-  const parentGameContainerInput = document.querySelector('.game-solution');
+  const parentGameContainer = document.querySelector(".game-objective");
+  const parentGameContainerInput = document.querySelector(".game-solution");
   if (forCase === "keyboard") {
-    console.log('inside setUpGame();');
-    // Keyboard 
-    for (let i = 0 ; i < size ; i++) {
-      if (parentGameContainer != null && parentGameContainerInput != null){      parentGameContainer.append(document.createElement('div'));
-      parentGameContainer.children[i].setAttribute('class', 'character');
-      parentGameContainerInput.append(document.createElement('input'));
-      parentGameContainerInput.children[i].setAttribute('class', 'userInput');
+    console.log("inside setUpGame();");
+    // Keyboard
+    for (let i = 0; i < size; i++) {
+      if (parentGameContainer != null && parentGameContainerInput != null) {
+        parentGameContainer.append(document.createElement("div"));
+        parentGameContainer.children[i].setAttribute("class", "character");
+        parentGameContainerInput.append(document.createElement("input"));
+        parentGameContainerInput.children[i].setAttribute("class", "userInput");
+      }
     }
   }
-    
+  else {
+    for (let i = 0; i < size; i++) {
+      parentGameContainer.append(document.createElement("div"));
+      parentGameContainer.children[i].setAttribute("class", "character");
+    }
   }
 }
-document.addEventListener('turbo:load', () => {
-  setUpGame('keyboard', 6);
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+document.addEventListener("turbo:load", () => {
+  setUpGame("mouse", 6);
+});
 
 // let eventFired = false;
 // Read parent elements and setup game skeleton
 // function startGame() {
-  
+
 //   let timeStart = 0;
 //   const gameObjectiveContainer = document.querySelector(".game-objective");
 //   const gameSolutionContainer = document.querySelector(".game-solution");
@@ -157,7 +147,7 @@ document.addEventListener('turbo:load', () => {
 //                 window.location.href = '/unicorns';
 //               }
 //             });
-              
+
 //           }
 //         } else {
 //           gameSolutionContainer.children[i].style.backgroundColor = "#FA9884";
@@ -167,7 +157,3 @@ document.addEventListener('turbo:load', () => {
 //     }
 //   });
 // }
-
-  
-
-

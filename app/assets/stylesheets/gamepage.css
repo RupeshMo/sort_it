@@ -1,15 +1,9 @@
 * {
-  border: 0.5px solid black ; 
-  margin: 5px;
+  /* border: 0.5px solid blue ;  */
+  /* margin: 6px; */
   /* background-color: #FFF67E ; */
 }
-body {
-  display: flex;
-  flex-direction: column;
-  /* background-color: #BFEA7C; */
-  
 
-}
 .game-body {
   border: 0.3px solid grey;
   display: flex;
@@ -34,6 +28,15 @@ body {
   padding: 10px;
   border: 1px solid black;
   
+  
+}
+.game-show-container {
+  /* border: 1px solid yellow; */
+  min-height: inherit;
+  width: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .game-solution {
@@ -104,6 +107,7 @@ body {
   font-size: 15px;
   display: flex;
   justify-content: space-evenly;
+  /* border: 1px dotted red; */
 }
 
 .label {
@@ -111,4 +115,9 @@ body {
   padding: 10px;
   /* justify-content: center;
   align-content: center; */
+}
+
+fieldset {
+  border: 0.2px solid rgb(226, 14, 96);
+  
 }

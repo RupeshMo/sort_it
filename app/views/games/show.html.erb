@@ -1,7 +1,8 @@
 <H1>This is games show page</H1>
-<ul>
-<% @games.each do |game| %>
-<Li><%= game.gametime %></Li>
-  
-  <%end%>
+<ul class="game-navigation">
+  <% @games.each do |game| %>
+    <li>
+      <%= game.gametime %>
+    </li>
+    <%end%>
 </ul>

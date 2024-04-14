@@ -1,13 +1,23 @@
 <div class="game-show-container">
   <div class="start-game">
-    <div class="start-game-button">Start Game</div>
-    <label class="label">Mouse<input type="radio" class="mouse"></label>
-    <label class="label">Keyboard<input type="radio" class="keyboard"></label>
+    <fieldset>
+      <legend>Select input type:</legend>
+
+      <div class="radio-button">
+        <input type="radio" name="input-medium" id="keyboard" value="keyboard">
+        <label for="keyboard" class="radio-lable">Keyboard</label>
+      </div>
+
+      <div class="radio-button">
+        <input type="radio" name="input-medium" id="mouse" value="mouse">
+        <label for="mouse" class="radio-lable">Mouse</label>
+      </div>
+    </fieldset>  
   </div>
 
-  <div class= "game-body">
+  <!-- <div class= "game-body">
     <div class= "game-objective"></div>
     <div class= "game-solution"></div>
-  </div>
+  </div> -->
 
 </div>
