@@ -1,6 +1,6 @@
 .main {
-  border-radius: 10px;
-  border: 0.2px solid rgb(226, 14, 96);
+  /* border-radius: 10px; */
+  /* border: 0.2px solid rgb(226, 14, 96); */
   display: flex;
   flex-direction: column;
   width: 250px;
@@ -12,12 +12,12 @@ header {
   /* border: 1px solid black; */
   display: flex;
   justify-content: center;
-  height: 100px;
+  height: 69px;
   align-items: center;
 }
 
 .logo {
-  font-size: 4rem;
+  font-size: 2rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: deeppink;
   letter-spacing: 1.5px;
@@ -59,7 +59,9 @@ div.game-navigation {
 }
 
 .btn:hover {
-  box-shadow:  3px 3px  deeppink;
+  box-shadow:  1px 1.3px  deeppink;
+  /* background-color: bisque; */
+
 }
 
 .flex-direction-setup {
@@ -95,11 +97,13 @@ div.game-navigation {
   /* border: 1px solid red; */
 }
 
-.set-up-description {
+.set-up-description * {
   /* border: 1px solid black; */
   display: flex;
-  /* margin: 1px; */
+  margin: 4p9x;
   flex-direction: column;
-}
+  /* animation: fadeIn 1s linear; */
+  transition: 1s;
 
+}
 
