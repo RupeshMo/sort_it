@@ -1,21 +1,72 @@
+import { LinkedList } from "plugin/linkedlist";
+
+function checkNumber(randomNumber, numberInList = null, list = null, fRightMost) {
+  let fixedRightMost = fRightMost;
+  // console.log("random number:", randomNumber, "numberinlist:", numberInList);
+
+  // number disqualifies for addition to list
+  if (randomNumber == numberInList) {
+    // list.rightMost = fixedRightMost;
+    checkNumber(getRandomCharBetween(65, 90), fixedRightMost.data, list, fixedRightMost);
+  }
+  // number qualifies for addition to list
+  else if (randomNumber > numberInList) {
+    list.addElement(randomNumber);
+    // list.rightMost = fRightMost;
+  }
+  // number qualifies for addition to list
+  else if (randomNumber < numberInList) {
+    // randomnumber is being added if present left of hold is null or empty
+    if (list.rightMost.previous === null) {
+      list.addElementStart(value);
+      // list.rightMost = fRightMost;
+    } else {
+      // if its not null, it means its not the first position in the list, so we check further
+      // list.rightMost = list.rightMost.previous;
+      console.log(list.printListValues(), "list");
+      checkNumber(randomNumber, list.rightMost.data, list, fixedRightMost);
+    }
+  }
+}
+
+function ObjectiveSequence(size = null) {
+  const sequenceList = new LinkedList();
+  let count = 0;
+
+  // Initial check for head
+  if (sequenceList.leftMost.next == null) {
+    sequenceList.addElement(getRandomCharBetween(65, 90));
+    count++;
+  }
+  // loop starts for creating a list till given size
+  while (count != size - 1) {
+    checkNumber(
+      getRandomCharBetween(65, 90),
+      sequenceList.rightMost.data,
+      sequenceList,
+      sequenceList.rightMost
+    );
+    count++;
+    console.log("w", "hold", sequenceList.rightMost);
+  }
+  console.log("list:");
+  sequenceList.printListValues();
+}
+// ObjectiveSequence(6);
+
 export function gameSequenceSize() {
   return 5;
 }
 
 function getRandomCharBetween(startBound, endBound) {
-  return String.fromCharCode(
-    Math.random() * (startBound - endBound) + endBound
-  );
+  const minCeiled = Math.ceil(startBound);
+  const maxFloored = Math.floor(endBound);
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+  // return String.fromCharCode(
+  //   Math.random() * (startBound - endBound) + endBound
+  // );
 }
 
-function ObjectiveSequence(size, number){
-  let sequenceArray = [];
-  for (let i = 0; i < size; i++){
-    if (sequenceArray[i] < number || sequenceArray[i] == null ){
-      
-    }
-  }
-}
 function compareInput(compareStrInput, sortedSolutionString) {
   if (compareStrInput.toUpperCase() === sortedSolutionString.toUpperCase()) {
     return true;

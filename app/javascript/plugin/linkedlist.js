@@ -1,41 +1,58 @@
 class Node {
-  constructor(data, next = null) {
+  constructor(data, next = null, previous = null) {
     this.data = data;
     this.next = next;
+    this.previous = previous;
   }
 }
 
-class LinkedList {
-  head = new Node();
-  hold = new Node();
+export class LinkedList {
+  leftMost = new Node();
+  rightMost = new Node();
 
-  addElement(value){
-    let current = new Node(value);
-    // console.log(current, 'current');
-    // console.log(this.hold , 'hold');
-    if (this.head.next == null){
-      this.head.next = current;
-      this.hold.next = current;
+  addElement(value) {
+    let current = new Node(value, null, this.rightMost);
+    if (this.leftMost.next == null) {
+      this.leftMost = current;
+      this.rightMost = current;
     }
-    this.hold.next = current;
-    this.hold = current;
+    this.rightMost.next = current;
+    this.rightMost = current;
   }
 
+  addElementStart(value){
+    let current = new Node(value, this.leftMost, this.leftMost.previous);
+    this.leftMost.previous = current;
+    this.leftMost = current;
+  }
 
+  addElementLHold(value){
+    let current = new Node(value, this.rightMost, this.rightMost.previous); 
+    this.rightMost.previous.next = current;
+    this.rightMost.previous = current;
 
-  printListValues(){
-    let temp = this.head.next;
-    while(temp != null){
+  }
+  PrintPrevious() {
+    let temp = this.rightMost;
+    while (temp.previous != null) {
+      console.log(temp, ",", temp.data);
+      temp = temp.previous;
+    }
+  }
+
+  printListValues() {
+    let temp = this.leftMost.next;
+    while (temp != null) {
       console.log(temp.data);
       temp = temp.next;
     }
   }
 }
-  
-let a = new LinkedList;
-a.addElement(1);
-a.addElement(2);
-a.addElement(3);
-a.addElement(4);
-// console.log(a);
-a.printListValues();
+
+// let a = new LinkedList;
+// a.addElement(1);
+// a.addElement(2);
+// a.addElement(3);
+// a.addElement(4);
+// // console.log(a);
+// a.printListValues();
