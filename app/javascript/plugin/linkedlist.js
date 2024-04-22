@@ -7,17 +7,28 @@ class Node {
 }
 
 export class LinkedList {
-  leftMost = new Node();
-  rightMost = new Node();
+  // leftMost = new Node();
+  leftMost = null;
+  rightMost = null;
+  // rightMost = new Node();
 
   addElement(value) {
     let current = new Node(value, null, this.rightMost);
-    if (this.leftMost.next == null) {
+    if (this.leftMost == null) {
       this.leftMost = current;
       this.rightMost = current;
+      return;
     }
+    if (this.rightMost.next == null){
     this.rightMost.next = current;
     this.rightMost = current;
+    }
+    else {
+      current.next = this.rightMost.next;
+      current.previous = this.rightMost;
+      this.rightMost.next.previous = current;
+      this.rightMost.next = current;
+    }
   }
 
   addElementStart(value){
@@ -32,16 +43,16 @@ export class LinkedList {
     this.rightMost.previous = current;
 
   }
-  PrintPrevious() {
+  printPrevious() {
     let temp = this.rightMost;
-    while (temp.previous != null) {
-      console.log(temp, ",", temp.data);
+    while (temp != null) {
+      console.log(temp.data);
       temp = temp.previous;
     }
   }
 
   printListValues() {
-    let temp = this.leftMost.next;
+    let temp = this.leftMost;
     while (temp != null) {
       console.log(temp.data);
       temp = temp.next;
