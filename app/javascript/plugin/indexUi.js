@@ -22,13 +22,14 @@ function randomIndexGenerator() {
 
 function randomColorGenerator() {
   let rgb = [];
-  rgb[0] = Math.floor((Math.random() * 256));
-  rgb[1] = Math.floor((Math.random() * 256));
-  rgb[2] = Math.floor((Math.random() * 256));
+  rgb[0] = Math.floor((Math.random() * 125));
+  rgb[1] = Math.floor((Math.random() * 40));
+  rgb[2] = Math.floor((Math.random() * 255));
   return rgb;
 }
 
 setInterval(() => {
   
   mainElement.children[randomIndexGenerator()[0]].children[randomIndexGenerator()[1]].style.backgroundColor = "rgb(" + randomColorGenerator()[0] + "," + randomColorGenerator()[1] + "," + randomColorGenerator()[2];
+  mainElement.children[randomIndexGenerator()[0]].children[randomIndexGenerator()[1]].style.backgroundColor = 'none';
 }, 1);
