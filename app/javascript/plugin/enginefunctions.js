@@ -1,90 +1,71 @@
 import { LinkedList } from "plugin/linkedlist";
 
 function checkNumber(randomNumber, numberInList = null, list = null, biggestListNumber) {
-  console.log(randomNumber, list.rightMost.data, biggestListNumber, 'Inside Check');
-  let position = biggestListNumber;
-  console.log(randomNumber, list.rightMost.data, position, 'Inside Check');
-  // Case 1: Random Number = number already in list, find another one that does not match.
+
+  // Case 1
   if (randomNumber == numberInList){
-    // Reset rightMost 
-    console.log(randomNumber, list.rightMost.data, '==');
-    list.rightMost = position;
-    checkNumber(getRandomCharBetween(65,90), list.rightMost.data, list, position);
+    list.rightMost = biggestListNumber;
+    checkNumber(getRandomCharBetween(65,90), list.rightMost.data, list, biggestListNumber);
   }
 
-  // Case 2: Random Number > number already in list, add it to the list.
+  // Case 2 >
   else if (randomNumber > numberInList){
-    // Reset rightMost
-    console.log(randomNumber, list.rightMost.data, '>');
-    
-    // This adds the number right next to current number in list as it is bigger than that.
-    list.addElement(randomNumber);
-    list.rightMost = position;
-
-    console.log("list:", list.rightMost.data, list.rightMost.previous.data);
- 
+    console.log(randomNumber, '>');
+      list.addElement(randomNumber);
+      if (biggestListNumber.next == null || biggestListNumber.next == undefined){
+        list.rightMost = biggestListNumber;
+      }
+      return randomNumber;
   }
 
-  // Case 3: Random Number < number already in list, check again with previous element as the current.
-  else if (randomNumber < numberInList || numberInList == undefined){
-    /* There could be two possibilities :
-    First: The number already in the list could be first and only, so the position left next to it is null, and the random number will be added there.
-    */
-    console.log(randomNumber, list.rightMost.data, '<');
-   if (list.rightMost.previous == null){
-    // Reset rightMost
-    console.log(randomNumber, list.rightMost.data, '< == null');
-    list.rightMost = position;
-    list.addElementStart(randomNumber);
-    console.log("list:", list.rightMost.data, list.rightMost.previous.data);
+  // Case 3 <
+  else if (randomNumber < numberInList){
+    console.log(randomNumber, '<');
+    if (list.rightMost.previous == null || list.rightMost.previous == undefined){
+      list.addElementStart(randomNumber);
+      list.rightMost = biggestListNumber;
+    }
 
-   }
-    /* 
-    Second: The previous position is not null, then we need to check it again. But with different position.
-    */  
-   else {
-    // Position here is the previous of current.
-    console.log(randomNumber, list.rightMost.data, '< !null');
-    list.rightMost = list.rightMost.previous;
-    // console.log(list.rightMost.data, 'data', randomNumber);
-    checkNumber(randomNumber, list.rightMost.data, list, position);
-   }
+    else{
+      list.rightMost = list.rightMost.previous;
+      checkNumber(randomNumber, list.rightMost.data, list, biggestListNumber);
+    }
   }
 }
 
 function ObjectiveSequence(size = null) {
-  const sequenceList = new LinkedList();
+  const sequenceList = new LinkedList;
   let count = 0;
-
+  const randomSequence = new Array();
+  let time = new Date().getTime();
+  
   // Initial check for head
   if (sequenceList.leftMost == null) {
     sequenceList.addElement(getRandomCharBetween(65, 90));
-    console.log(sequenceList.rightMost.data, 'Initial');
+    randomSequence[count] = String.fromCharCode(sequenceList.rightMost.data);
     count++;
-  }
+  } 
+
   // loop starts for creating a list till given size
-  while (count != size - 1) {
-    console.log(sequenceList.rightMost.data, sequenceList.leftMost.data, 'size -1');
-    checkNumber(getRandomCharBetween(65, 90), sequenceList.rightMost.data, sequenceList, sequenceList.rightMost);
+  while (count <= size - 1) {
+    let a = checkNumber(getRandomCharBetween(65, 90), sequenceList.rightMost.data, sequenceList, sequenceList.rightMost);
+    randomSequence[count] = a;
+    console.log(a, sequenceList.rightMost.data);
     count++;
-    // console.log("w", "hold", sequenceList.rightMost);
   }
-  // console.log("list:", sequenceList);
+  console.log(new Date().getTime() - time, 'ms');
   sequenceList.printListValues();
+  console.log(randomSequence);
 }
-ObjectiveSequence(8);
+
+ObjectiveSequence(6);
 
 export function gameSequenceSize() {
   return 5;
 }
 
 function getRandomCharBetween(startBound, endBound) {
-  const minCeiled = Math.ceil(startBound);
-  const maxFloored = Math.floor(endBound);
-  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
-  // return String.fromCharCode(
-  //   Math.random() * (startBound - endBound) + endBound
-  // );
+  return Math.floor(Math.random() * (endBound - startBound) + startBound);
 }
 
 function compareInput(compareStrInput, sortedSolutionString) {
@@ -146,7 +127,7 @@ function loadingTimer(value, size) {
       setUpGame(value, size);
       return true;
     }
-  }, 500);
+  }, 500); 
 }
 
 function userInputMode() {
