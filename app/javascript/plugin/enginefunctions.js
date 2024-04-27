@@ -1,64 +1,66 @@
 import { LinkedList } from "plugin/linkedlist";
 
-function checkNumber(randomNumber, numberInList = null, list = null, biggestListNumber) {
-
+function checkNumber(randomNumber, numberInList = null, list = null, biggestListNumber, randomsequence, index) {
   // Case 1
-  if (randomNumber == numberInList){
+  if (randomNumber == numberInList) {
     list.rightMost = biggestListNumber;
-    checkNumber(getRandomCharBetween(65,90), list.rightMost.data, list, biggestListNumber);
+    checkNumber(
+      getRandomCharBetween(65, 90),
+      list.rightMost.data,
+      list,
+      biggestListNumber,
+      randomsequence,
+      index
+    );
   }
 
   // Case 2 >
-  else if (randomNumber > numberInList){
-    console.log(randomNumber, '>');
-      list.addElement(randomNumber);
-      if (biggestListNumber.next == null || biggestListNumber.next == undefined){
-        list.rightMost = biggestListNumber;
-      }
-      return randomNumber;
+  else if (randomNumber > numberInList) {
+    list.addElement(randomNumber);
+    if (biggestListNumber.next == null || biggestListNumber.next == undefined) {
+      list.rightMost = biggestListNumber;
+    }
+    randomsequence[index] = String.fromCharCode(randomNumber);
   }
 
   // Case 3 <
-  else if (randomNumber < numberInList){
-    console.log(randomNumber, '<');
-    if (list.rightMost.previous == null || list.rightMost.previous == undefined){
+  else if (randomNumber < numberInList) {
+    if (list.rightMost.previous == null || list.rightMost.previous == undefined) {
       list.addElementStart(randomNumber);
       list.rightMost = biggestListNumber;
-    }
-
-    else{
+      randomsequence[index] = String.fromCharCode(randomNumber);
+    } 
+    else {
       list.rightMost = list.rightMost.previous;
-      checkNumber(randomNumber, list.rightMost.data, list, biggestListNumber);
+      checkNumber(randomNumber, list.rightMost.data, list, biggestListNumber, randomsequence, index);
     }
   }
 }
 
 function ObjectiveSequence(size = null) {
-  const sequenceList = new LinkedList;
+  const sequenceList = new LinkedList();
   let count = 0;
   const randomSequence = new Array();
   let time = new Date().getTime();
-  
+
   // Initial check for head
   if (sequenceList.leftMost == null) {
     sequenceList.addElement(getRandomCharBetween(65, 90));
     randomSequence[count] = String.fromCharCode(sequenceList.rightMost.data);
-    count++;
-  } 
-
-  // loop starts for creating a list till given size
-  while (count <= size - 1) {
-    let a = checkNumber(getRandomCharBetween(65, 90), sequenceList.rightMost.data, sequenceList, sequenceList.rightMost);
-    randomSequence[count] = a;
-    console.log(a, sequenceList.rightMost.data);
+    // randomSequence[count] = sequenceList.rightMost.data;
     count++;
   }
-  console.log(new Date().getTime() - time, 'ms');
-  sequenceList.printListValues();
+  let a = 0;
+  // loop starts for creating a list till given size
+  while (count <= size - 1) {
+    checkNumber(getRandomCharBetween(65, 90), sequenceList.rightMost.data, sequenceList, sequenceList.rightMost, randomSequence, count);
+    count++;
+  }
+  console.log(new Date().getTime() - time, "ms", "list");
   console.log(randomSequence);
 }
 
-ObjectiveSequence(6);
+ObjectiveSequence(9);
 
 export function gameSequenceSize() {
   return 5;
@@ -127,7 +129,7 @@ function loadingTimer(value, size) {
       setUpGame(value, size);
       return true;
     }
-  }, 500); 
+  }, 500);
 }
 
 function userInputMode() {
