@@ -1,4 +1,7 @@
-
+* {
+  border: 1px solid grey;
+  margin: 2px;
+}
 
 .game-body {
   border: 0.3px solid grey;

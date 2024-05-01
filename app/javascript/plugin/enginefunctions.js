@@ -5,7 +5,7 @@ function checkNumber(randomNumber, numberInList, list, biggestListNumber, random
   // Case 1
   if (randomNumber == numberInList) {
     list.rightMost = biggestListNumber;
-    checkNumber(getRandomCharBetween(65, 90), list.rightMost.data, list, biggestListNumber, randomsequence, index);
+    checkNumber(getRandomCharBetween(65, 91), list.rightMost.data, list, biggestListNumber, randomsequence, index);
   }
 
   // Case 2 >
@@ -37,18 +37,16 @@ function ObjectiveSequence(size = null) {
   const sequenceList = new LinkedList();
   let count = 0;
   const randomSequence = new Array();
-  let time = new Date().getTime();
 
   // Initial check for head
   if (sequenceList.leftMost == null) {
-    sequenceList.addElement(getRandomCharBetween(65, 90));
+    sequenceList.addElement(getRandomCharBetween(65, 91));
     randomSequence[count] = String.fromCharCode(sequenceList.rightMost.data);
-    // randomSequence[count] = sequenceList.rightMost.data;
     count++;
   }
   // loop starts for creating a list till given size
   while (count <= size - 1) {
-    checkNumber(getRandomCharBetween(65, 90), sequenceList.rightMost.data, sequenceList, sequenceList.rightMost, randomSequence, count);
+    checkNumber(getRandomCharBetween(65, 91), sequenceList.rightMost.data, sequenceList, sequenceList.rightMost, randomSequence, count);
     count++;
   }
   return [sequenceList, randomSequence];
@@ -80,9 +78,12 @@ function clearPlatform() {
   let containerOne = document.querySelector(".game-objective");
   let containerTwo = document.querySelector(".game-solution");
 
-  if (containerOne != null && containerTwo != null) {
-    document.querySelector(".game-show-container").remove(containerOne);
-    document.querySelector(".game-show-container").remove(containerTwo);
+  if ((containerOne != null && containerTwo != null)) {
+    containerOne.remove();
+    containerTwo.remove();
+  }
+  else if (containerOne != null){
+    containerOne.remove();
   }
 }
 
@@ -120,16 +121,6 @@ function setUpGame(forCase, size) {
         parentGameContainerInput.children[i].setAttribute("disabled", "true");
         parentGameContainer.children[i].textContent = objectiveLists[1][i].toUpperCase();
 
-        // Timer
-        // const stime = new Date().getTime();
-        // const timeContainer = document.querySelector(".time");
-        // timeContainer.style.display = "flex";
-
-        // let id = setInterval(() => {
-        //   ctime = (new Date().getTime() - stime) / 999;
-        //   timeContainer.textContent = ctime;
-        // }, 50);
-
         // Set focus for the first input field
         parentGameContainerInput.children[0].removeAttribute("disabled");
         parentGameContainerInput.children[0].focus();        
@@ -146,15 +137,6 @@ function setUpGame(forCase, size) {
     gameShow.append(parentGameContainerInput);
 
     for (let i = 0; i < size; i++) {
-      // // Timer
-      // const stime = new Date().getTime();
-      // const timeContainer = document.querySelector(".time");
-      // timeContainer.style.display = "flex";
-
-      // let id = setInterval(() => {
-      //   ctime = (new Date().getTime() - stime) / 1000;
-      //   timeContainer.textContent = ctime;
-      // }, 100);
 
       parentGameContainerInput.append(document.createElement("label"));
       parentGameContainerInput.children[i].setAttribute("class", "character");
@@ -166,6 +148,17 @@ function setUpGame(forCase, size) {
   }
 }
 
+function restartGame(lastUsedInput, size, intervaID){
+  
+  const restartButton = document.querySelector('.restart');
+
+  restartButton.addEventListener('click', () => {
+    clearInterval(intervaID);
+    const objectiveListAndInput = setUpGame(lastUsedInput, size);
+    gameLogic(objectiveListAndInput[0], objectiveListAndInput[1], lastUsedInput);
+
+  });
+}
 function userInputMode() {
   const radioInput = document.querySelectorAll(".radio-button");
   const startGame = document.querySelector(".start-game");
@@ -184,25 +177,41 @@ function userInputMode() {
 
 function gameLogic(objectiveListSorted, parentGameContainerInput, userInputMode ){
 
-  // Timer functionality
+  parentGameContainerInput.after(document.querySelector('.restart'));
   
+  // Timer functionality
+  const startTime = new Date().getTime();
+  const timerContainer = document.querySelector('.time');
+  timerContainer.style.display = 'flex';
+  let ctime = null;
+  const iID = setInterval(() => {
+    ctime = (new Date().getTime() - startTime) / 1000;
+    timerContainer.textContent = ctime;
+  }, 100);
+
+
 
   // Read all the elements for input;
   for (let i = 0; i < parentGameContainerInput.childElementCount; i++) {
     parentGameContainerInput.children[i].addEventListener(userInputMode, function eLogic(e) {
 
       if (compareInput(e.target.value, objectiveListSorted.leftMost.data) == true){
-        console.log(e.type);
         e.target.value = e.target.value.toUpperCase();
         e.target.setAttribute('disabled', 'true');
         e.target.style.backgroundColor = 'skyblue';
         e.target.removeEventListener(userInputMode, eLogic);
         objectiveListSorted.leftMost = objectiveListSorted.leftMost.next;
-
+        
         if (i+1 < parentGameContainerInput.childElementCount){
 
         parentGameContainerInput.children[i+1].removeAttribute('disabled');
         parentGameContainerInput.children[i+1].focus();
+        }
+        
+        // When reached end clear timer.
+        if (e.target.value == String.fromCharCode(objectiveListSorted.rightMost.data))  {
+          clearInterval(iID);
+          // console.log(ctime);
         }
       }
 
@@ -213,10 +222,13 @@ function gameLogic(objectiveListSorted, parentGameContainerInput, userInputMode 
           e.target.value = '';
         }
       }
-
     })
+    
   }
+  
 }
+
+
 
 // gameLogic();
 userInputMode();
