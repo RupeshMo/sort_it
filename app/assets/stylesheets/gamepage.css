@@ -98,8 +98,11 @@
   display: none;
   color: darkorchid;
   font-size: 10px ;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
   justify-content: center;
   align-items: center;
+  transition:cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-duration: 200ms;
  }
 
 
