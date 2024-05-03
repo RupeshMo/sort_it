@@ -1,12 +1,13 @@
 .main {
   /* border-radius: 10px; */
-  /* border: 0.2px solid rgb(226, 14, 96); */
+  /* border: 2px solid rgb(226, 14, 96); */
   display: flex;
-  flex-direction: column;
-  width: 250px;
-  min-height: 260px;
-  max-height: auto;
+  width: 100%;
+  height: 70dvh;
+  flex-direction: row;
+  justify-content: center;
   align-self: center;
+  align-items: center;
 }
 header {
   /* border: 1px solid black; */
@@ -18,25 +19,21 @@ header {
 
 .logo {
   font-size: 2rem;
-  font-family:Permanent Marker;
-  color: deeppink;
+  font-family: var(--main-font-family);
+  color: #135D66;
   letter-spacing: 1.5px;
 }
 
-
-
-
-
 div.game-navigation {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   /* border: 0.2px solid rgb(226, 14, 96); */
   /* border-radius: 10px; */
   min-height:inherit ;
-  height: inherit;
-  width: inherit;
+  height: 6vh;
+  width: 100%;
   gap: 10px;
 }
 
@@ -45,15 +42,18 @@ div.game-navigation {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: var(--main-font-color);
   text-align: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  width: 140px;
-  border: 0.6px solid deeppink;
+
+  font-family: var(--main-font-family);
+  width: 80px;
+  border: 0.6px solid var(--main-border-color);
   border-radius: 4px;
-  height: 30px;
+  height: 10px;
   cursor: pointer;
   transition: 200ms;
+  font-size: 10px;
+  padding: 3px;
   
   /* transition: ease-in-out; */
 }
@@ -71,8 +71,8 @@ div.game-navigation {
 
 .close-description {
   cursor: pointer;
-  background-color: pink;
-  border: 0.4px solid deeppink;
+  background-color: var(--main-bacgroundcolor);
+  border: 0.4px solid var(--main-border-color);
   border-radius: 50%;
   width: 10px;
   height: 10px;
@@ -100,7 +100,7 @@ div.game-navigation {
 .set-up-description * {
   /* border: 1px solid black; */
   display: flex;
-  margin: 4p9x;
+  margin: 4px;
   flex-direction: column;
   /* animation: fadeIn 1s linear; */
   transition: 1s;

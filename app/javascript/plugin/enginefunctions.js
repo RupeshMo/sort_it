@@ -33,7 +33,6 @@ function checkNumber(randomNumber, numberInList, list, biggestListNumber, random
 }
 
 function ObjectiveSequence(size = null) {
-  console.log('objectsequence');
   const sequenceList = new LinkedList();
   let count = 0;
   const randomSequence = new Array();
@@ -75,7 +74,6 @@ function setGoalAndRetain(whereTo, whatTo) {
 }
 
 function clearPlatform() {
-  console.log('clearPlatform');
   let containerOne = document.querySelector(".game-objective");
   let containerTwo = document.querySelector(".game-solution");
 
@@ -90,7 +88,6 @@ function clearPlatform() {
 
 // Sets up the skeleton of the game
 function setUpGame(forCase, size) {
-  console.log('setupGame');
   clearPlatform();
 
   const gameShow = document.querySelector(".game-show-container");
@@ -144,16 +141,14 @@ function setUpGame(forCase, size) {
 }
 
 function restartGame(previousUsedInputMode, size, intervalId){
-console.log('in id', intervalId);
   const restartButton = document.querySelector('.restart');
+  restartButton.style.display = 'flex';
 
   restartButton.addEventListener('click', function elogic(e) {
     clearInterval(intervalId);
 
     const gameLogicData = setUpGame(previousUsedInputMode, size);
-    // console.log(gameLogicData);
     gameLogic(gameLogicData[0], gameLogicData[1], previousUsedInputMode); 
-
     restartButton.removeEventListener('click', elogic);
   });
 }
@@ -182,9 +177,9 @@ function timer(iID = null){
     
   iID = setInterval(() => {
       const currentTime = (new Date().getTime() - startTime)/ 1000;
-      timerContainer.textContent = currentTime;
+      timerContainer.textContent = currentTime.toPrecision(3);
       
-    }, 100);
+    }, 1);
     return iID; 
   // }
 }
@@ -231,10 +226,6 @@ function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes
 
 
 
-// gameLogic();
-// userInputMode();
-
-// loadingTimer();
 
 document.addEventListener("turbo:load", () => {
   userInputMode();
