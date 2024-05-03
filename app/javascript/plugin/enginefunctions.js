@@ -140,6 +140,15 @@ function setUpGame(forCase, size) {
   }
 }
 
+function checkValidKey(key){
+  console.log(key.charCodeAt(), 'D');
+  if ((key.charCodeAt() >= 65 && key.charCodeAt() < 91) || (key.charCodeAt() >= 97 && key.charCodeAt() < 123)) {
+    return true;
+  }
+  else return false;
+}
+
+
 function restartGame(previousUsedInputMode, size, intervalId){
   const restartButton = document.querySelector('.restart');
   restartButton.style.display = 'flex';
@@ -200,7 +209,7 @@ function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes
         
         e.target.value = e.target.value.toUpperCase();
         e.target.setAttribute("disabled", "true");
-        e.target.style.backgroundColor = "skyblue";
+        e.target.style.backgroundColor = "#7AB2B2";
         e.target.removeEventListener(userInputModes, eLogic);
         objectiveListSorted.leftMost = objectiveListSorted.leftMost.next;
 
@@ -214,8 +223,8 @@ function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes
           clearInterval(id);          
            }
       } 
-      else {
-        e.target.style.backgroundColor = "red";
+      else if (checkValidKey(e.key)) {
+        e.target.style.backgroundColor = "#FF6500";
         if (userInputModes == "keyup") {
           e.target.value = "";
         }
