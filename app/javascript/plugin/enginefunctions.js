@@ -183,14 +183,29 @@ function timer(iID = null){
   const startTime = new Date().getTime();
   const timerContainer = document.querySelector('.time');
   timerContainer.style.display = "flex";
+  timerContainer.style.fontSize = '20px';
+  timerContainer.style.margin = 'initial';
     
   iID = setInterval(() => {
       const currentTime = (new Date().getTime() - startTime)/ 1000;
-      timerContainer.textContent = currentTime.toPrecision(3);
+      timerContainer.textContent = currentTime.toPrecision(4);
       
     }, 1);
     return iID; 
   // }
+}
+
+function showUserScore(){
+
+  const timerContainer = document.querySelector('.time');
+
+
+
+  timerContainer.style.fontSize = '4rem';
+  timerContainer.style.margin = '8px';
+
+
+
 }
 
 function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes) {
@@ -220,7 +235,9 @@ function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes
 
         // When reached end clear timer.
         if (e.target.value == String.fromCharCode(objectiveListSorted.rightMost.data)) {
-          clearInterval(id);          
+          clearInterval(id);  
+          showUserScore();
+          parentGameContainerInput.nextSibling.focus();       
            }
       } 
       else if (checkValidKey(e.key)) {
