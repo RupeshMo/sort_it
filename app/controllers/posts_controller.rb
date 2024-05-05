@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   def index
   end
 
-  def show 
-    
+  def show
+    @games = Game.all
   end
 
 end

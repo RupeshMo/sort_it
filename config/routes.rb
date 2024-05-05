@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   
   # Defines the root path route ("/")
-  root "posts#show"
-    get "newgame", to: "posts#show"
+  root "games#show"
+    get "newgame", to: "games#show"
     post "/unicorn", to: "games#create"
-    get "/unicorns", to: "games#show", as: "unic"
+    get "/unicorns", to: "posts#show", as: "unic"
     
 end
