@@ -5,3 +5,5 @@ import "plugin/indexUi"
 import 'plugin/enginefunctions'
 import 'plugin/engine'
 import 'plugin/linkedlist'
+import 'plugin/hardmode'
+console.log('config: loaded');

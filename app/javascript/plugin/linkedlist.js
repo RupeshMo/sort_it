@@ -1,3 +1,4 @@
+console.log('linkedlist: loaded');
 class Node {
   constructor(data, next = null, previous = null) {
     this.data = data;

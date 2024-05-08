@@ -1,8 +1,9 @@
 import { LinkedList } from "plugin/linkedlist";
+console.log('enginefunction: loaded');
 
 // This function 'checkNumber' takes n number of random numbers and returns a ascending ordered linkedlist and randomly filled array with the n numbers.
-function checkNumber(randomNumber, numberInList, list, biggestListNumber, randomsequence, index) {
-  
+export function checkNumber(randomNumber, numberInList, list, biggestListNumber, randomsequence, index) {
+
   // Case 1
   if (randomNumber == numberInList) {
     list.rightMost = biggestListNumber;
@@ -32,14 +33,14 @@ function checkNumber(randomNumber, numberInList, list, biggestListNumber, random
   }
 }
 
-function ObjectiveSequence(size = null) {
+export function ObjectiveSequence(size, startBound, endBound) {
   const sequenceList = new LinkedList();
   let count = 0;
   const randomSequence = new Array();
 
   // Initial check for head
   if (sequenceList.leftMost == null) {
-    sequenceList.addElement(getRandomCharBetween(65, 91));
+    sequenceList.addElement(getRandomCharBetween(startBound, endBound));
     randomSequence[count] = String.fromCharCode(sequenceList.rightMost.data);
     count++;
   }
@@ -68,6 +69,8 @@ function compareInput(compareStrInput, sortedSolutionString) {
   }
 }
 
+
+
 function setGoalAndRetain(whereTo, whatTo) {
   whereTo.textContent = whatTo;
   return whatTo;
@@ -86,24 +89,19 @@ function clearPlatform() {
   }
 }
 
-// Sets up the skeleton of the game
-function setUpGame(forCase, size) {
-  clearPlatform();
+function setUpskeltonElements(parentGameContainerInput, size, containerValue, forCase, gameShow, parentGameContainer = null) {
+  console.log(forCase);
+  if (forCase == 'keyup') {
 
-  const gameShow = document.querySelector(".game-show-container");
-  const objectiveLists = ObjectiveSequence(size);
+    console.log('parentGameContainerInput');
 
-  if (forCase === "keyup") {
     const parentGameContainer = document.createElement("div");
-    const parentGameContainerInput = document.createElement("div");
 
     parentGameContainer.setAttribute("class", "game-objective");
     parentGameContainerInput.setAttribute("class", "game-solution");
 
     gameShow.append(parentGameContainer);
     gameShow.append(parentGameContainerInput);
-
-    // Keyboard
     for (let i = 0; i < size; i++) {
       if (parentGameContainer != null && parentGameContainerInput != null) {
         parentGameContainer.append(document.createElement("label"));
@@ -112,35 +110,43 @@ function setUpGame(forCase, size) {
         parentGameContainerInput.children[i].setAttribute("class", "userInput");
         parentGameContainerInput.children[i].setAttribute("maxlength", 1);
         parentGameContainerInput.children[i].setAttribute("disabled", "true");
-        parentGameContainer.children[i].textContent =
-          objectiveLists[1][i].toUpperCase();
+        parentGameContainer.children[i].textContent = containerValue[i].toUpperCase();
 
         // Set focus for the first input field
         parentGameContainerInput.children[0].removeAttribute("disabled");
         parentGameContainerInput.children[0].focus();
       }
     }
-    return [objectiveLists[0], parentGameContainerInput];
   }
-
-  // Mouse
-  else if (forCase === "click") {
-    const parentGameContainerInput = document.createElement("div");
-    parentGameContainerInput.setAttribute("class", "game-objective");
-    gameShow.append(parentGameContainerInput);
-
+  else if (forCase == 'click') {
+    console.log('parentGameContainerInput');
     for (let i = 0; i < size; i++) {
+      parentGameContainerInput.setAttribute("class", "game-objective");
+      gameShow.append(parentGameContainerInput);
+
       parentGameContainerInput.append(document.createElement("label"));
       parentGameContainerInput.children[i].setAttribute("class", "character");
-      parentGameContainerInput.children[i].value = objectiveLists[1][i];
-      parentGameContainerInput.children[i].textContent =
-        parentGameContainerInput.children[i].value;
+      parentGameContainerInput.children[i].value = containerValue[i];
+      parentGameContainerInput.children[i].textContent = parentGameContainerInput.children[i].value;
     }
-    return [objectiveLists[0], parentGameContainerInput];
   }
 }
 
-function checkValidKey(key){
+// objectiveLists[1][i]
+// Sets up the skeleton of the game
+export function setUpGame(forCase, size) {
+  clearPlatform();
+
+  const gameShow = document.querySelector(".game-show-container");
+  const objectiveLists = ObjectiveSequence(size);
+  const parentGameContainerInput = document.createElement("div");
+  console.log(objectiveLists[1]);
+  setUpskeltonElements(parentGameContainerInput, size, objectiveLists[1], forCase, gameShow);
+  return [objectiveLists[0], parentGameContainerInput];
+}
+
+
+function checkValidKey(key) {
   console.log(key.charCodeAt(), 'D');
   if ((key.charCodeAt() >= 65 && key.charCodeAt() < 91) || (key.charCodeAt() >= 97 && key.charCodeAt() < 123)) {
     return true;
@@ -149,7 +155,7 @@ function checkValidKey(key){
 }
 
 
-function restartGame(previousUsedInputMode, size, intervalId){
+function restartGame(previousUsedInputMode, size, intervalId) {
   const restartButton = document.querySelector('.restart');
   restartButton.style.display = 'flex';
 
@@ -157,55 +163,52 @@ function restartGame(previousUsedInputMode, size, intervalId){
     clearInterval(intervalId);
 
     const gameLogicData = setUpGame(previousUsedInputMode, size);
-    gameLogic(gameLogicData[0], gameLogicData[1], previousUsedInputMode); 
+    gameLogic(gameLogicData[0], gameLogicData[1], previousUsedInputMode);
     restartButton.removeEventListener('click', elogic);
   });
 }
 
-function userInputMode() {
+export function userInputMode(mode = null) {
 
   const radioInput = document.querySelectorAll(".radio-button");
   const startGame = document.querySelector(".start-game");
 
-  
+
   for (let i = 0; i < 2; i++) {
     radioInput[i].children[1].addEventListener("click", () => {
       startGame.style.display = "none";
-      const objectiveListAndInput = setUpGame(radioInput[i].children[0].value, 6);
 
-      // Start gameLogic
-      gameLogic(objectiveListAndInput[0], objectiveListAndInput[1], radioInput[i].children[0].value);
+      if(mode == 'normal'){
+        const objectiveListAndInput = setUpGame(radioInput[i].children[0].value, 6);
+        gameLogic(objectiveListAndInput[0], objectiveListAndInput[1], radioInput[i].children[0].value);
+      }
+      else if (mode == 'hard'){
+        console.log(mode);
+      }
     });
   }
 }
 
-function timer(iID = null){
+function timer(iID = null) {
   const startTime = new Date().getTime();
   const timerContainer = document.querySelector('.time');
   timerContainer.style.display = "flex";
   timerContainer.style.fontSize = '20px';
   timerContainer.style.margin = 'initial';
-    
+
   iID = setInterval(() => {
-      const currentTime = (new Date().getTime() - startTime)/ 1000;
-      timerContainer.textContent = currentTime.toPrecision(4);
-      
-    }, 1);
-    return iID; 
+    const currentTime = (new Date().getTime() - startTime) / 1000;
+    timerContainer.textContent = currentTime.toPrecision(4);
+
+  }, 1);
+  return iID;
   // }
 }
 
-function showUserScore(){
-
+function showUserScore() {
   const timerContainer = document.querySelector('.time');
-
-
-
   timerContainer.style.fontSize = '4rem';
   timerContainer.style.margin = '8px';
-
-
-
 }
 
 function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes) {
@@ -221,7 +224,7 @@ function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes
   for (let i = 0; i < parentGameContainerInput.childElementCount; i++) {
     parentGameContainerInput.children[i].addEventListener(userInputModes, function eLogic(e) {
       if (compareInput(e.target.value, objectiveListSorted.leftMost.data) == true) {
-        
+
         e.target.value = e.target.value.toUpperCase();
         e.target.setAttribute("disabled", "true");
         e.target.style.backgroundColor = "#7AB2B2";
@@ -235,11 +238,11 @@ function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes
 
         // When reached end clear timer.
         if (e.target.value == String.fromCharCode(objectiveListSorted.rightMost.data)) {
-          clearInterval(id);  
+          clearInterval(id);
           showUserScore();
-          parentGameContainerInput.nextSibling.focus();       
-           }
-      } 
+          parentGameContainerInput.nextSibling.focus();
+        }
+      }
       else if (checkValidKey(e.key)) {
         e.target.style.backgroundColor = "#FF6500";
         if (userInputModes == "keyup") {
@@ -253,9 +256,9 @@ function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes
 
 
 
-document.addEventListener("turbo:load", () => {
-  userInputMode();
-});
+// document.addEventListener("turbo:load", () => {
+//   userInputMode('normal');
+// });
 
 //
 

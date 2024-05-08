@@ -9,3 +9,4 @@ pin "plugin/enginefunctions"
 pin "plugin/indexUi"
 pin "plugin/engine"
 pin 'plugin/linkedlist'
+pin 'plugin/hardmode'

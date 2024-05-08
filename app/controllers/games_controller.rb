@@ -4,6 +4,10 @@ class GamesController < ApplicationController
     
   end
 
+  def showhard
+    
+  end
+
   def index
   end
 
