@@ -1,23 +1,24 @@
 import { LinkedList } from "plugin/linkedlist";
-console.log('enginefunction: loaded');
+import { userInputMode } from "plugin/hardmode";
+import { getRandomCharBetween } from "plugin/hardmode";
 
 // This function 'checkNumber' takes n number of random numbers and returns a ascending ordered linkedlist and randomly filled array with the n numbers.
-export function checkNumber(randomNumber, numberInList, list, biggestListNumber, randomsequence, index) {
+export function checkNumber(randomNumber, numberInList, list, biggestListNumber, randomsequence, index, caseFor, startBound, endBound) {
 
   // Case 1
   if (randomNumber == numberInList) {
     list.rightMost = biggestListNumber;
-    checkNumber(getRandomCharBetween(65, 91), list.rightMost.data, list, biggestListNumber, randomsequence, index);
+    checkNumber(getRandomCharBetween(startBound, endBound, caseFor), list.rightMost.data, list, biggestListNumber, randomsequence, index, caseFor, startBound, endBound);
   }
 
   // Case 2 >
   else if (randomNumber > numberInList) {
     list.addElement(randomNumber);
-
     if (biggestListNumber.next == null || biggestListNumber.next == undefined) {
       list.rightMost = biggestListNumber;
     }
     randomsequence[index] = String.fromCharCode(randomNumber);
+
   }
 
   // Case 3 <
@@ -28,25 +29,25 @@ export function checkNumber(randomNumber, numberInList, list, biggestListNumber,
       randomsequence[index] = String.fromCharCode(randomNumber);
     } else {
       list.rightMost = list.rightMost.previous;
-      checkNumber(randomNumber, list.rightMost.data, list, biggestListNumber, randomsequence, index);
+      checkNumber(randomNumber, list.rightMost.data, list, biggestListNumber, randomsequence, index, caseFor, startBound, endBound);
     }
   }
 }
 
-export function ObjectiveSequence(size, startBound, endBound) {
+export function ObjectiveSequence(size, startBound, endBound, caseFor) {
   const sequenceList = new LinkedList();
   let count = 0;
   const randomSequence = new Array();
 
   // Initial check for head
   if (sequenceList.leftMost == null) {
-    sequenceList.addElement(getRandomCharBetween(startBound, endBound));
+    sequenceList.addElement(getRandomCharBetween(startBound, endBound, caseFor));
     randomSequence[count] = String.fromCharCode(sequenceList.rightMost.data);
     count++;
   }
   // loop starts for creating a list till given size
   while (count <= size - 1) {
-    checkNumber(getRandomCharBetween(65, 91), sequenceList.rightMost.data, sequenceList, sequenceList.rightMost, randomSequence, count);
+    checkNumber(getRandomCharBetween(startBound, endBound, caseFor), sequenceList.rightMost.data, sequenceList, sequenceList.rightMost, randomSequence, count, caseFor, startBound, endBound);
     count++;
   }
   return [sequenceList, randomSequence];
@@ -56,9 +57,11 @@ export function gameSequenceSize() {
   return 5;
 }
 
-function getRandomCharBetween(startBound, endBound) {
-  return Math.floor(Math.random() * (endBound - startBound) + startBound);
-}
+// function getRandomCharBetween(startBound, endBound) {
+//   return Math.floor(Math.random() * (endBound - startBound) + startBound);
+// }
+
+
 
 function compareInput(compareStrInput, sortedSolutionString) {
   if (compareStrInput.toUpperCase() === String.fromCharCode(sortedSolutionString).toUpperCase()) {
@@ -76,7 +79,7 @@ function setGoalAndRetain(whereTo, whatTo) {
   return whatTo;
 }
 
-function clearPlatform() {
+export function clearPlatform() {
   let containerOne = document.querySelector(".game-objective");
   let containerTwo = document.querySelector(".game-solution");
 
@@ -131,16 +134,17 @@ function setUpskeltonElements(parentGameContainerInput, size, containerValue, fo
     }
   }
 }
-
+;
 // objectiveLists[1][i]
 // Sets up the skeleton of the game
-export function setUpGame(forCase, size) {
+export function setUpGame(forCase, size, caseFor) {
   clearPlatform();
 
   const gameShow = document.querySelector(".game-show-container");
-  const objectiveLists = ObjectiveSequence(size);
+  const objectiveLists = ObjectiveSequence(size, 65, 91, caseFor);
+  // console.log(objectiveLists);
   const parentGameContainerInput = document.createElement("div");
-  console.log(objectiveLists[1]);
+  // console.log(objectiveLists[1]);
   setUpskeltonElements(parentGameContainerInput, size, objectiveLists[1], forCase, gameShow);
   return [objectiveLists[0], parentGameContainerInput];
 }
@@ -155,41 +159,24 @@ function checkValidKey(key) {
 }
 
 
-function restartGame(previousUsedInputMode, size, intervalId) {
+function restartGame(previousUsedInputMode, size, intervalId, mode) {
+  console.log(previousUsedInputMode, size, intervalId);
   const restartButton = document.querySelector('.restart');
   restartButton.style.display = 'flex';
 
   restartButton.addEventListener('click', function elogic(e) {
     clearInterval(intervalId);
 
-    const gameLogicData = setUpGame(previousUsedInputMode, size);
-    gameLogic(gameLogicData[0], gameLogicData[1], previousUsedInputMode);
+    const gameLogicData = setUpGame(previousUsedInputMode, size, mode);
+    gameLogic(gameLogicData[0], gameLogicData[1], previousUsedInputMode, mode);
     restartButton.removeEventListener('click', elogic);
   });
 }
 
-export function userInputMode(mode = null) {
-
-  const radioInput = document.querySelectorAll(".radio-button");
-  const startGame = document.querySelector(".start-game");
 
 
-  for (let i = 0; i < 2; i++) {
-    radioInput[i].children[1].addEventListener("click", () => {
-      startGame.style.display = "none";
-
-      if(mode == 'normal'){
-        const objectiveListAndInput = setUpGame(radioInput[i].children[0].value, 6);
-        gameLogic(objectiveListAndInput[0], objectiveListAndInput[1], radioInput[i].children[0].value);
-      }
-      else if (mode == 'hard'){
-        console.log(mode);
-      }
-    });
-  }
-}
-
-function timer(iID = null) {
+export function timer(iID = null) {
+  console.log(console.trace('timer: ', iID));
   const startTime = new Date().getTime();
   const timerContainer = document.querySelector('.time');
   timerContainer.style.display = "flex";
@@ -197,6 +184,8 @@ function timer(iID = null) {
   timerContainer.style.margin = 'initial';
 
   iID = setInterval(() => {
+    // console.log('inter: ', iID);
+
     const currentTime = (new Date().getTime() - startTime) / 1000;
     timerContainer.textContent = currentTime.toPrecision(4);
 
@@ -205,20 +194,20 @@ function timer(iID = null) {
   // }
 }
 
-function showUserScore() {
+export function showUserScore() {
   const timerContainer = document.querySelector('.time');
   timerContainer.style.fontSize = '4rem';
   timerContainer.style.margin = '8px';
 }
 
-function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes) {
+export function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes, mode) {
   parentGameContainerInput.after(document.querySelector(".restart"));
 
   //Timer
   let id = timer();
 
   // Restart game function
-  restartGame(userInputModes, parentGameContainerInput.childElementCount, id);
+  restartGame(userInputModes, parentGameContainerInput.childElementCount, id, mode);
 
   // Read all the elements for input;
   for (let i = 0; i < parentGameContainerInput.childElementCount; i++) {
@@ -257,7 +246,7 @@ function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes
 
 
 // document.addEventListener("turbo:load", () => {
-//   userInputMode('normal');
+//   userInputMode('normal', 6, 65, 91);
 // });
 
 //

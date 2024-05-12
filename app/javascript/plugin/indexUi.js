@@ -1,4 +1,3 @@
-console.log('indexUj: loaded');
 // Add a click event on how-to-play-button to set-up-description
 function showDescription() {
   // Read and store the how-to-play-button 

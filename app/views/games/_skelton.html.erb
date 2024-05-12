@@ -3,18 +3,22 @@
     <div class="seconds"></div>
     <div class="milliseconds"></div>
   </div>
-  <div class="start-game">
+  <div class="start-game" data-clickstate="not-clicked">
     <div class="radio-button">
-      <input type="radio" name="input-medium" id="keyboard" value="keyup">
-      <label for="keyboard" class="radio-label">Keyboard</label>
+      <!-- <input type="radio" name="input-medium" id="keyboard" value="keyup"> -->
+      <label for="keyboard" class="radio-label" data-input="keyup">Keyboard</label>
     </div>
 
     <div class="radio-button">
-      <input type="radio" name="input-medium" id="mouse" value="click">
-      <label for="mouse" class="radio-label">Mouse</label>
+      <!-- <input type="radio" name="input-medium" id="mouse" value="click"> -->
+      <label for="mouse" class="radio-label" data-input="click">Mouse</label>
     </div>
   </div>
-  <button class="restart" type="button">Restart!</button>  
+  <div class="game-button-group">
+    <button class="restart" type="button">Restart!</button>
+    <button class="mode" type="button" data-mode="normal">Normal</button>
+  </div>
+
 </div>
 
 <div class="set-up-description">

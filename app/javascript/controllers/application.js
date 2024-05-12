@@ -1,5 +1,4 @@
 import { Application } from "@hotwired/stimulus"
-console.log('Application: loaded');
 const application = Application.start()
 
 
