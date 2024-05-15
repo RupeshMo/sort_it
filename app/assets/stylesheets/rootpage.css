@@ -1,9 +1,15 @@
+. * {
+  /* border: 1px solid black; */
+  /* margin: 5px;
+  padding: 5px; */
+}
+
 .main {
-  /* border-radius: 10px; */
-  /* border: 2px solid rgb(226, 14, 96); */
+  
+  margin-top: 40px;
   display: flex;
   width: 100%;
-  height: 70dvh;
+  height: 50dvh;
   flex-direction: row;
   justify-content: center;
   align-self: center;
@@ -18,14 +24,17 @@ header {
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 3rem;
   font-family: var(--main-logo-font-family);
-  color: #135D66;
+  /* color: #135D66; */
   letter-spacing: 1.5px;
+  color: transparent;
+  text-shadow: 5px 4px indianred;
 }
 
 div.game-navigation {
   display: flex;
+  margin-top: 15px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -35,6 +44,7 @@ div.game-navigation {
   height: 6vh;
   width: 100%;
   gap: 10px;
+  
 }
 
 .btn {
@@ -44,16 +54,18 @@ div.game-navigation {
   align-items: center;
   color: var(--main-font-color);
   text-align: center;
+  /* font-size: 100px; */
   font-family: var(--main-font-family);
-  width: 80px;
-  border: 0.6px solid var(--main-border-color);
+  width: 150px;
+  /* border: 0.6px solid var(--main-border-color); */
   /* border-radius: 4px; */
   height: 10px;
   cursor: pointer;
-  transition: all 220ms;
-  font-size: 10px;
-  padding: 3px;
-  
+  transition: font-weight 220ms;
+  font-size: 20px;
+  padding: 10px;
+  margin: 5px;
+  /* border: 1px solid green; */
   /* transition: ease-in-out; */
 }
 
@@ -113,3 +125,6 @@ div.game-navigation {
 
 }
 
+.leaderboard-container {
+  border: 1px solid red;
+}

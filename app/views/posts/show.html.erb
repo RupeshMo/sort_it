@@ -1,8 +1,19 @@
-<H1>This is games show page</H1>
-<ul class="game-navigation">
-  <% @games.each do |game| %>
-    <li>
-      <%= game.gametime %>
-    </li>
-    <%end%>
-</ul>
+<ol class="leaderboard-container" type="1">
+  <h1>Leaderboard</h1>
+  <div class="leaderboard-table-heading">
+    <div class="header">
+      <div class="header-item">Rank</div>
+      <div class="header-item">Time taken</div>
+      <div class="header-item">Description</div>
+    </div>
+
+  </div>
+  <% @games.each do |game|  %>
+  <li class="player-score-details">
+    <div class="player-element-container">
+      <div class="player-time"><%= game.gametime %></div>
+      <div class="player-name"><%= game.player_name %></div>
+    </div>
+  </li>
+  <%end%>
+</ol>

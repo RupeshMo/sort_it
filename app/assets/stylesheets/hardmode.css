@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border: 0.6px solid rgb(128, 122, 122);
+  /* border: 0.6px solid rgb(128, 122, 122); */
   padding: 4px;
   border-radius: 4px;
   
@@ -30,6 +30,7 @@
   border-radius: 4px;
   transition: background-color 200ms ease-in-out, font-size 150ms ease-in-out;
   font-weight: 550;
+  
 }
 
 .hard-mode-cell:hover {
@@ -37,4 +38,30 @@
   font-size: 2.2rem;
 }
 
+.mode {
+  width: 260px;
+  font-size: 2rem;
+  font-family: var(--main-font-family);
+  transition: font-weight 200ms ease-in-out;
+  border: none;
+  padding: 6px;
+}
+
+.mode:hover {
+  font-weight: 700;
+}
+
+.normal-mode {
+  background-color: lightskyblue;
+  color: black;
+  box-shadow: 4px 4px #ff0000;
+  transition: background-color 200ms ease-in-out;
+}
+
+.hard-mode {
+  background-color:#ff0000 ;
+  color: whitesmoke;
+  box-shadow: 4px 4px lightskyblue;
+  transition: background-color 200ms ease-in-out;
+}
 

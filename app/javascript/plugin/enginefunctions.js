@@ -1,6 +1,5 @@
 import { LinkedList } from "plugin/linkedlist";
-import { userInputMode } from "plugin/hardmode";
-import { getRandomCharBetween } from "plugin/hardmode";
+import { getRandomCharBetween, pushToServer } from "plugin/hardmode";
 
 // This function 'checkNumber' takes n number of random numbers and returns a ascending ordered linkedlist and randomly filled array with the n numbers.
 export function checkNumber(randomNumber, numberInList, list, biggestListNumber, randomsequence, index, caseFor, startBound, endBound) {
@@ -182,16 +181,18 @@ export function timer(iID = null) {
   timerContainer.style.display = "flex";
   timerContainer.style.fontSize = '20px';
   timerContainer.style.margin = 'initial';
+  let currentTime = null;
 
   iID = setInterval(() => {
     // console.log('inter: ', iID);
 
-    const currentTime = (new Date().getTime() - startTime) / 1000;
+    currentTime = (new Date().getTime() - startTime) / 1000;
     timerContainer.textContent = currentTime.toPrecision(4);
+    timerContainer.dataset.timetaken = currentTime;
 
   }, 1);
   return iID;
-  // }
+
 }
 
 export function showUserScore() {
@@ -201,7 +202,7 @@ export function showUserScore() {
 }
 
 export function gameLogic(objectiveListSorted, parentGameContainerInput, userInputModes, mode) {
-  parentGameContainerInput.after(document.querySelector(".restart"));
+  parentGameContainerInput.after(document.querySelector(".game-button-group"));
 
   //Timer
   let id = timer();
@@ -216,6 +217,7 @@ export function gameLogic(objectiveListSorted, parentGameContainerInput, userInp
 
         e.target.value = e.target.value.toUpperCase();
         e.target.setAttribute("disabled", "true");
+        console.log(e.target);
         e.target.style.backgroundColor = "#7AB2B2";
         e.target.removeEventListener(userInputModes, eLogic);
         objectiveListSorted.leftMost = objectiveListSorted.leftMost.next;
@@ -229,10 +231,13 @@ export function gameLogic(objectiveListSorted, parentGameContainerInput, userInp
         if (e.target.value == String.fromCharCode(objectiveListSorted.rightMost.data)) {
           clearInterval(id);
           showUserScore();
+          // console.log(id[1], 'id[1]');
+          const data = { game: {gametime: document.querySelector('.time').dataset.timetaken, mode: mode}};
+          pushToServer(data);
           parentGameContainerInput.nextSibling.focus();
         }
       }
-      else if (checkValidKey(e.key)) {
+      else  {
         e.target.style.backgroundColor = "#FF6500";
         if (userInputModes == "keyup") {
           e.target.value = "";

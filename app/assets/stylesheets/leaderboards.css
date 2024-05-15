@@ -1,0 +1,30 @@
+.player-score-details {
+  gap: 4px;
+}
+
+.player-element-container{
+  display: flex;
+  gap: 4px;
+}
+
+.header{
+  display: flex;
+}
+
+form {
+  border: 1px solid lightgreen;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tooltip {
+  visibility: hidden;
+  border: 0.2px solid black;
+  /* opacity: 5%; */
+}
+
+.tooltip:hover{
+  visibility: visible;
+}

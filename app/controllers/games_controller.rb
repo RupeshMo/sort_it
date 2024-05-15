@@ -1,12 +1,22 @@
 class GamesController < ApplicationController
 
   def show
-    
+
   end
 
-  def showhard
-    
+  def player
+    @game = Game.new
   end
+
+  def create_name
+    @game = Game.new(require_params_name)
+    if @game.save
+
+    else
+      redirect_to '/'
+    end
+  end
+
 
   def index
   end
@@ -23,7 +33,7 @@ class GamesController < ApplicationController
       # end
       #   # format.json { render json: {
       #   #   hellow: "Hi"
-      #   # } 
+      #   # } m
       # }
     else 
         redirect_to '/'
@@ -33,8 +43,11 @@ class GamesController < ApplicationController
   private
 
   def require_params
-    params.require(:game).permit(:gametime, :player_name, :objective_sequence)
+    params.require(:game).permit(:gametime, :mode)
   end
 
+  def require_params_name
+    params.require(:game).permit(:player_name)
+  end
 
 end
