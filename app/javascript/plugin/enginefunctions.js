@@ -1,5 +1,5 @@
 import { LinkedList } from "plugin/linkedlist";
-import { getRandomCharBetween, pushToServer, showPromptName} from "plugin/hardmode";
+import { clearGrid, getRandomCharBetween, showPromptName, setUpskeltonElementsHardMode, calculateGameLogicHardMode} from "plugin/hardmode";
 
 // This function 'checkNumber' takes n number of random numbers and returns a ascending ordered linkedlist and randomly filled array with the n numbers.
 export function checkNumber(randomNumber, numberInList, list, biggestListNumber, randomsequence, index, caseFor, startBound, endBound) {
@@ -158,18 +158,33 @@ function checkValidKey(key) {
 }
 
 
-function restartGame(previousUsedInputMode, size, intervalId, mode) {
+export function restartGame(previousUsedInputMode, size, intervalId, mode) {
   document.querySelector('.prompt-container').style.display = 'none';
   console.log(previousUsedInputMode, size, intervalId);
   const restartButton = document.querySelector('.restart');
   restartButton.style.display = 'flex';
 
   restartButton.addEventListener('click', function elogic(e) {
+    console.log('clear id', intervalId);
     clearInterval(intervalId);
+    if (mode === 'normal'){
+      const gameLogicData = setUpGame(previousUsedInputMode, size, mode);
+      gameLogic(gameLogicData[0], gameLogicData[1], previousUsedInputMode, mode);
+      restartButton.removeEventListener('click', elogic);
+    }
+    else if (mode === 'hard'){
 
-    const gameLogicData = setUpGame(previousUsedInputMode, size, mode);
-    gameLogic(gameLogicData[0], gameLogicData[1], previousUsedInputMode, mode);
-    restartButton.removeEventListener('click', elogic);
+      clearGrid();
+      clearPlatform();
+      const objectiveListAndInput = ObjectiveSequence(16, 65, 123, mode);
+      // console.log(objectiveListAndInput);
+      // let timerID = timer();
+      // console.log('start id:', timerID);
+      const gridContainer = setUpskeltonElementsHardMode(objectiveListAndInput[1], 16, mode);
+      calculateGameLogicHardMode(previousUsedInputMode, gridContainer, objectiveListAndInput[0], mode);
+      restartButton.removeEventListener('click', elogic);
+
+    }
   });
 }
 

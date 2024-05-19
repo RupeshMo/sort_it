@@ -54,16 +54,16 @@
 }
 
 .normal-mode {
-  background-color: rgb(85, 157, 202);
+  background-color: lightskyblue;
   color: black;
-  box-shadow: 4px 4px #ff0000;
-  transition: background-color 200ms ease-in-out;
+  box-shadow: 4px 4px  darkred;
+  transition: background-color 200ms ease-in-out, font-weight 150ms ease-in-out;
 }
 
 .hard-mode {
-  background-color:#ff0000e0 ;
+  background-color: darkred ;
   color: rgb(251, 236, 236);
   box-shadow: 4px 4px lightskyblue;
-  transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out, font-weight 150ms ease-in-out;
 }
 

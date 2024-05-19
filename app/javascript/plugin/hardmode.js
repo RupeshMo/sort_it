@@ -1,4 +1,4 @@
-import { gameLogic, timer, setUpGame, ObjectiveSequence, clearPlatform, showUserScore } from 'plugin/enginefunctions';
+import { restartGame, gameLogic, timer, setUpGame, ObjectiveSequence, clearPlatform, showUserScore } from 'plugin/enginefunctions';
 
 export function getRandomCharBetween(startBound, endBound, caseFor) {
   const randomNumber = Math.floor(Math.random() * (endBound - startBound) + startBound);
@@ -19,7 +19,10 @@ export function getRandomCharBetween(startBound, endBound, caseFor) {
 
 
 // Computes win state for player
-function calculateGameLogicHardMode(gridContainer, sortedSolutionString, timerID, mode) {
+export function calculateGameLogicHardMode(userInputModes ,gridContainer, sortedSolutionString, mode) {
+  let timerID = timer();
+
+  restartGame(userInputModes, 16, timerID, mode);
 
   gridContainer.addEventListener('click', function elogic(e) {
     if (compareInputHardMode(e.target.value, sortedSolutionString.leftMost.data) == true) {
@@ -55,7 +58,7 @@ function compareInputHardMode(compareStrInput, sortedSolutionString) {
 
 
 // Sets up basic game structure
-function setUpskeltonElementsHardMode(cellValues, size) {
+export function setUpskeltonElementsHardMode(cellValues, size) {
 
   const gameShow = document.querySelector(".game-show-container");
   const gridContainer = document.createElement('div');
@@ -86,7 +89,7 @@ function setUpskeltonElementsHardMode(cellValues, size) {
 
 
 // Clears any existing grid/ DOM elements
-function clearGrid() {
+export function clearGrid() {
   const gridContainer = document.querySelector('.grid-container');
   if (gridContainer != null) {
     gridContainer.remove();
@@ -109,10 +112,10 @@ function gameModes(startGame, mode, radioInput) {
     clearGrid();
     clearPlatform();
     const objectiveListAndInput = ObjectiveSequence(16, 65, 123, mode);
-    let timerID = timer();
-    console.log('start id:', timerID);
+    // let timerID = timer();
+    // console.log('start id:', timerID);
     const gridContainer = setUpskeltonElementsHardMode(objectiveListAndInput[1], 16, mode);
-    calculateGameLogicHardMode(gridContainer, objectiveListAndInput[0], timerID, mode);
+    calculateGameLogicHardMode(radioInput ,gridContainer, objectiveListAndInput[0], mode);
   }
 }
 
