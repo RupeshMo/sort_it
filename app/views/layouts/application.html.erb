@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>SortIt</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -17,12 +17,14 @@
     </header>
     <nav>
       <div class="game-navigation">
-        <div class="how-to-play-button btn">How to play?</div>
+        <div class="how-to-play-button btn">?</div>
         <%= link_to 'Leaderboards', '/unicorns', class: 'btn'%>
+        <%= link_to 'Home', '/', class: 'btn'%>
       </div>  
     </nav>
     <main class="main">
     <%= yield %>
     </main>
+
   </body>
 </html>

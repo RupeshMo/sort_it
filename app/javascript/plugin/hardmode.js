@@ -31,8 +31,9 @@ function calculateGameLogicHardMode(gridContainer, sortedSolutionString, timerID
         console.log('end:', timerID);
         clearInterval(timerID);
         showUserScore();
-        const data = {game: {gametime: document.querySelector('.time').dataset.timetaken, mode: mode}};
-        pushToServer(data);
+        showPromptName(document.querySelector('.time').dataset.timetaken, mode);
+        // const data = {game: {gametime: document.querySelector('.time').dataset.timetaken, mode: mode}};
+        // pushToServer(data);
       }
     }
     else if (e.target.value !== undefined) {
@@ -97,7 +98,7 @@ function clearGrid() {
 // callback function for Radiobutton events : computes required unordered array and sorted linked lists according to mode: (hard / normal)
 function gameModes(startGame, mode, radioInput) {
   startGame.style.display = "none";
-
+  
   if (mode == 'normal') {
     clearGrid();
     clearPlatform();
@@ -134,8 +135,9 @@ export function userInputMode() {
       radioInput[i].children[0].addEventListener("click", function elogic() {
         hideToggleMode();
         const mode = document.querySelector('.mode').dataset.mode;
-        console.log(mode, 'userinput');
+        // console.log(mode, 'userinput');
         // startGame.dataset.clickstate = 'clicked';
+        // showPromptName();
         gameModes(startGame, mode, radioInput[i].children[0].dataset.input);
         radioInput[i].children[0].removeEventListener('click', elogic);
       });
@@ -194,6 +196,22 @@ export function pushToServer(data){
   });
 }
 
+export function showPromptName(time, mode){
+  let current_player = null;
+  const promptContainer = document.querySelector('.prompt-container');
+  document.querySelector('.game-show-container').append(promptContainer);
+  promptContainer.style.display = 'flex';
+
+  const inputName = document.querySelector('.name-input');
+  const submitNameBtn = document.querySelector('.submit-name');
+  submitNameBtn.addEventListener('click', function elogic(e){
+    if (inputName.value !== null){
+      const current_player = inputName.value;
+      const data = {game: {gametime: time, player_name: current_player, mode: mode}};
+      pushToServer(data);
+    }
+  })
+}
 
 document.addEventListener("turbo:load", () => {
   toggleMode();

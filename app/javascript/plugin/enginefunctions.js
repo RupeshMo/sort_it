@@ -1,5 +1,5 @@
 import { LinkedList } from "plugin/linkedlist";
-import { getRandomCharBetween, pushToServer } from "plugin/hardmode";
+import { getRandomCharBetween, pushToServer, showPromptName} from "plugin/hardmode";
 
 // This function 'checkNumber' takes n number of random numbers and returns a ascending ordered linkedlist and randomly filled array with the n numbers.
 export function checkNumber(randomNumber, numberInList, list, biggestListNumber, randomsequence, index, caseFor, startBound, endBound) {
@@ -159,6 +159,7 @@ function checkValidKey(key) {
 
 
 function restartGame(previousUsedInputMode, size, intervalId, mode) {
+  document.querySelector('.prompt-container').style.display = 'none';
   console.log(previousUsedInputMode, size, intervalId);
   const restartButton = document.querySelector('.restart');
   restartButton.style.display = 'flex';
@@ -231,9 +232,12 @@ export function gameLogic(objectiveListSorted, parentGameContainerInput, userInp
         if (e.target.value == String.fromCharCode(objectiveListSorted.rightMost.data)) {
           clearInterval(id);
           showUserScore();
-          // console.log(id[1], 'id[1]');
-          const data = { game: {gametime: document.querySelector('.time').dataset.timetaken, mode: mode}};
-          pushToServer(data);
+          showPromptName(document.querySelector('.time').dataset.timetaken, mode);
+          // let current_player = showPromptName();
+          // console.log(current_player);
+          // // console.log(id[1], 'id[1]');
+          // const data = { game: {gametime: document.querySelector('.time').dataset.timetaken, mode: mode}};
+          // pushToServer(data);
           parentGameContainerInput.nextSibling.focus();
         }
       }

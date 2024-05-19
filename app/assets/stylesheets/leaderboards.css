@@ -1,12 +1,24 @@
-.player-score-details {
+.player-score-details  {
   gap: 4px;
-}
-
-.player-element-container{
+  /* list-style-type: none; */
   display: flex;
-  gap: 4px;
+  width: 60%;
+  
 }
 
+.player-score-details > div {
+  padding: 3px;
+  /* border-bottom: 0.5px solid darkslateblue; */
+}
+
+
+
+* {
+  /* border: 1px solid black;  */
+  /* margin: 5px; */
+  /* padding: 4px; */
+
+}
 .header{
   display: flex;
 }
@@ -28,3 +40,108 @@ form {
 .tooltip:hover{
   visibility: visible;
 }
+
+.submit-btn{
+  width: auto;
+  height: auto;
+}
+
+.leaderboard-container {
+  width: inherit;
+  height: inherit;
+  /* border: 1px solid black; */
+  margin: 4px;
+  width: 60%;
+  /* align-self: flex-start; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--main-font-family);
+  
+}
+
+.heading {
+  justify-self: start;
+  font-family: var(--main-font-family);
+  color: var(--main-font-color);
+}
+
+.leaderboard-table-heading {
+  display: flex;
+  gap: 4px;
+  width: 60%;
+
+}
+
+.player-rank, .header-rank{
+  width: 50px;
+  min-width: fit-content;
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 1;
+}
+
+.player-name, .header-name {
+  width: 150px;
+  min-width: fit-content;
+  flex-grow: 2;
+
+}
+
+.player-time, .header-time {
+  width: 80px;
+  min-width: fit-content;
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 1;
+
+}
+
+.player-mode, .header-mode {
+  width: 40px;
+  min-width: fit-content;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.h {
+  /* margin: 5px; */
+  padding: 2px;
+  height: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  justify-content: baseline;
+}
+
+.player-score-details:nth-child(odd){
+  background-color: lightgreen;
+}
+
+.player-score-details:nth-child(even){
+  background-color: lightyellow;
+}
+
+.prompt-container {
+  display: none;
+}
+
+.name-input, .submit-name {
+  border: none;
+  background: none;
+  padding: 2px;
+  outline: none;
+  width: fit-content;
+}
+
+.name-input:focus {
+  border-bottom: 2px solid black;
+}
+
+.submit-name {
+  border: 1px solid black;
+}
+

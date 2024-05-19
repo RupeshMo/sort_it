@@ -1,19 +1,20 @@
-<ol class="leaderboard-container" type="1">
-  <h1>Leaderboard</h1>
+<div class="leaderboard-container">
+  <h1 class="heading">Leaderboard</h1>
   <div class="leaderboard-table-heading">
-    <div class="header">
-      <div class="header-item">Rank</div>
-      <div class="header-item">Time taken</div>
-      <div class="header-item">Description</div>
-    </div>
-
+      <div class="header-rank h">Rank</div>
+      <div class="header-name h">Name</div>
+      <div class="header-time h">Time taken</div>
+      <div class="header-mode h">Mode</div>
   </div>
+  <% count = 1%>
   <% @games.each do |game|  %>
-  <li class="player-score-details">
-    <div class="player-element-container">
-      <div class="player-time"><%= game.gametime %></div>
+  <div class="player-score-details">
+      <div class="player-rank"><%= count%></div>
       <div class="player-name"><%= game.player_name %></div>
-    </div>
-  </li>
+      <div class="player-time"><%= game.gametime %></div>
+      <div class="player-mode"><%= game.mode%></div>
+  </div>
+  <% count = count + 1%>
   <%end%>
-</ol>
+</div>
+

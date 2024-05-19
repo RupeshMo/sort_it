@@ -1,5 +1,5 @@
-<%= form_with url: '/player', method: :post do |form| %>
+<%= form_with model: @game do |form| %>
   <%= form.label :player_name%>
-  <%= form.text_field :player_name%>
-  <%= form.submit :player%>
+  <%= form.text_field :player_name, class = 'text-field' %>
+  <%= form.submit , class = 'submit-btn'%>
 <% end %>

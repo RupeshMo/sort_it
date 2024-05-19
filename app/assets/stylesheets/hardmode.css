@@ -18,15 +18,17 @@
 }
 
 .hard-mode-cell   {
-  border: 0.5px solid black;
-  padding: 4px;
+  /* border: 0.5px solid black; */
+  background-color: lightgrey;
+  padding: 7px;
   width: 50px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  font-family: var(--main-font-family);
+  font-size: 2.4rem;
+  /* font-family: var(--main-font-family); */
+  font-family: Inconsolata;
   border-radius: 4px;
   transition: background-color 200ms ease-in-out, font-size 150ms ease-in-out;
   font-weight: 550;
@@ -52,15 +54,15 @@
 }
 
 .normal-mode {
-  background-color: lightskyblue;
+  background-color: rgb(85, 157, 202);
   color: black;
   box-shadow: 4px 4px #ff0000;
   transition: background-color 200ms ease-in-out;
 }
 
 .hard-mode {
-  background-color:#ff0000 ;
-  color: whitesmoke;
+  background-color:#ff0000e0 ;
+  color: rgb(251, 236, 236);
   box-shadow: 4px 4px lightskyblue;
   transition: background-color 200ms ease-in-out;
 }
