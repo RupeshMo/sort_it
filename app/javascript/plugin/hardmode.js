@@ -203,7 +203,7 @@ export function pushToServer(data){
 export function showPromptName(time, mode){
   let current_player = null;
   const promptContainer = document.querySelector('.prompt-container');
-  document.querySelector('.game-show-container').append(promptContainer);
+  document.querySelector('.restart').after(promptContainer);
   promptContainer.style.display = 'flex';
 
   const inputName = document.querySelector('.name-input');
