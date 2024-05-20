@@ -20,6 +20,7 @@ export function getRandomCharBetween(startBound, endBound, caseFor) {
 
 // Computes win state for player
 export function calculateGameLogicHardMode(userInputModes ,gridContainer, sortedSolutionString, mode) {
+  gridContainer.after(document.querySelector(".game-button-group"));
   let timerID = timer();
 
   restartGame(userInputModes, 16, timerID, mode);
@@ -40,7 +41,7 @@ export function calculateGameLogicHardMode(userInputModes ,gridContainer, sorted
       }
     }
     else if (e.target.value !== undefined) {
-      e.target.style.backgroundColor = 'lightcoral';
+      e.target.style.animation = 'wrong-entry 300ms ease-in-out';
     }
   })
 }

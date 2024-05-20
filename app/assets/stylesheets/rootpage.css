@@ -10,6 +10,7 @@
   justify-content: center;
   /* align-self: center; */
   align-items: center;
+  /* flex-shrink: 1; */
 }
 header {
   /* border: 1px solid black; */
@@ -75,7 +76,7 @@ div.game-navigation {
 
 .btn:hover {
   /* box-shadow:  1px 1.3px  deeppink; */
-  background-color: var(--main-border-color);;
+  background-color: indianred;
   color: whitesmoke;
   /* border-width: 0.9px; */
   /* outline: 1px solid var(--main-border-color); */

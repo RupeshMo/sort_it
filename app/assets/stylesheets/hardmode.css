@@ -5,10 +5,14 @@
   /* border: 0.6px solid rgb(128, 122, 122); */
   padding: 4px;
   border-radius: 4px;
+  /* animation: wrong-entry 150ms ease-in-out; */
+
   
 }
 
-
+* {
+  border: 1px solid black;
+}
 
 .hard-mode-row {
   /* border: 1px solid black; */
@@ -67,3 +71,11 @@
   transition: background-color 200ms ease-in-out, font-weight 150ms ease-in-out;
 }
 
+@keyframes wrong-entry {
+  0% {
+    background-color: red;
+  }
+  100% {
+    background-color: darkred;
+  }
+}

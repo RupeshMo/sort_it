@@ -118,11 +118,11 @@ form {
 }
 
 .player-score-details:nth-child(odd){
-  background-color: lightgreen;
+  background-color: wheat;
 }
 
 .player-score-details:nth-child(even){
-  background-color: lightyellow;
+  background-color: lightslategray;
 }
 
 .prompt-container {
